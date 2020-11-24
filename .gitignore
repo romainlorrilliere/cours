@@ -2,6 +2,10 @@
 
 images/
 imagesOriginales/
+*.docx
+*.org
+*~
+
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
