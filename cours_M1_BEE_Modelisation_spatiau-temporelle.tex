@@ -4,13 +4,13 @@
 \usepackage[english]{babel}
 \usepackage{natbib}
 \usepackage{hyperref}
-%\usepackage{animate}
+% \usepackage{animate}
 \usepackage{graphicx}
 \usepackage{color}
 
 %% Theme
 \mode<presentation>
-%\usetheme[]{Berlin}
+% \usetheme[]{Berlin}
 \useoutertheme[footline=authorinstitutetitle]{miniframes}
 \useoutertheme{smoothtree}
 \useinnertheme[shadow=true]{rounded}
@@ -26,12 +26,12 @@
 % \useinnertheme{progressbar}
 % \useoutertheme{progressbar}
 %% Logo
-%\logo{\includegraphics[height=0.5cm]{Logo.png}}
+% \logo{\includegraphics[height=0.5cm]{Logo.png}}
 %% Fond de la page
 % \setbeamercolor{background canvas}{bg=couleur}
 
 \title[Dyna: Dynamiques spatiales]{Les dynamiques spatio-temporelles des communautés et des populations.\\
- \textit{\footnotesize{Plusieurs exemples de modélisation}}.}
+  \textit{\footnotesize{Plusieurs exemples de modélisation}}.}
 
 \author{Romain Lorrillière | \textit{romain.lorrilliere@mnhn.fr}}
 \institute{Paris Saclay : M1 EBE Module DYNA (Dec 2020)}
@@ -51,12 +51,12 @@
 
 
 
-%\section{Sommaire}
+% \section{Sommaire}
 %% =====================
-%\begin{frame}
-%  \frametitle{Sommaire}
-%  \tableofcontents[hideallsubsections]
-%\end{frame}
+% \begin{frame}
+%   \frametitle{Sommaire}
+%   \tableofcontents[hideallsubsections]
+% \end{frame}
 
 
 \begin{frame}{Plan}
@@ -66,7 +66,7 @@
 
 
 
-%=======================================================
+% =======================================================
 \section{Introduction}
 % ===============================================
 
@@ -78,51 +78,59 @@
   \frametitle{L écologie définition}
   \begin{columns}
     \begin{column}[c]{0.5\textwidth}
-     \begin{block}{Écologie}
-   Compréhension des relations entre les espèces et leur environnement 
-  \end{block}
-\begin{block}<3>{Écologie du paysage}
-   Prise en compte de l’Hétérogénéité, de l’homme et des différentes échelles
-  \end{block}
-     \end{column}
+      \begin{block}{Écologie}
+        Compréhension des relations entre les espèces et leur environnement 
+      \end{block}
+      \begin{block}<5>{Écologie du paysage}
+        Prise en compte de l’Hétérogénéité, de l’homme et des différentes échelles
+      \end{block}
+    \end{column}
     \begin{column}[l]{0.5\textwidth}
-      \includegraphics<1>[width=\textwidth]{niche2}    
-      \includegraphics<2>[width=\textwidth]{marnage}   
-      \includegraphics<3>[width=\textwidth]{ecologiePaysage_idiana}   
-       \end{column}
+      \includegraphics<1>[width=\textwidth]{niche1}
+      \includegraphics<2>[width=\textwidth]{niche2}
+      \includegraphics<3>[width=\textwidth]{niche3}    
+      \includegraphics<4>[width=\textwidth]{marnage}   
+      \includegraphics<5>[width=\textwidth]{ecologiePaysage_idiana}   
+    \end{column}
   \end{columns}
   
-\end{frame}
+  `\end{frame}
 
 \begin{frame}
   \frametitle{L'écologie du paysage}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
-     \begin{itemize}
-      \item Caractérisation du rôle de la structure du paysage
       \begin{itemize}
-       \item habitat
+      \item Caractérisation du rôle de la structure du paysage
+        \begin{itemize}
+        \item habitat
         \item linéaire (route, rivière)
-      \end{itemize}
+        \end{itemize}
 
-      \item Utilisation des SIG
+      \item Utilisation des Système d'Information Géographique (SIG ou
+        GIS)
+        \begin{itemize}
+        \item QGIS
+        \item R library(sf)
+        \item PostgreSQL Postgis          
+        \end{itemize}
       \end{itemize}
-     \end{column}
+    \end{column}
     \begin{column}[l]{0.4\textwidth}
       \includegraphics[width=\textwidth]{sig}    
-       \end{column}
+    \end{column}
   \end{columns}
 \end{frame}
 
 
 \begin{frame}{Les dynamiques spatio-temporelles}
- \begin{center}
-  \includegraphics<1>[width=.9\textwidth]{dynSpatial1}
- \includegraphics<2>[width=.9\textwidth]{dynSpatial2}
- \includegraphics<3>[width=.9\textwidth]{dynSpatial3}
- \includegraphics<4>[width=.9\textwidth]{dynSpatial4}
- \includegraphics<5>[width=.9\textwidth]{dynSpatial5} 
- \end{center}
+  \begin{center}
+    \includegraphics<1>[width=.9\textwidth]{dynSpatial1}
+    \includegraphics<2>[width=.9\textwidth]{dynSpatial2}
+    \includegraphics<3>[width=.9\textwidth]{dynSpatial3}
+    \includegraphics<4>[width=.9\textwidth]{dynSpatial4}
+    \includegraphics<5>[width=.9\textwidth]{dynSpatial5} 
+  \end{center}
 \end{frame}
 
 
@@ -144,52 +152,248 @@
 \end{frame}
 
 \begin{frame}{Des outils très variés}
-   \begin{columns}
+  \begin{columns}
     \begin{column}[c]{0.6\textwidth}
-   \begin{itemize}
-    \item <1-> Mathématiques appliquées
-    \item <3-> Statistiques
-    \item <5-> Automates cellulaires
-    \item <26-> Modèles individus centrés
-   \end{itemize}
+      \begin{block}{Mathématique appliquées}
+        \begin{footnotesize}
+           \begin{itemize}[<+->]          
+        \item Dynamique de population
+          \begin{itemize}
+          \item Si pas de contrainte croissance exponentielle \\~\\
+            $N_{t+1} = rN_t$ \\
+            où $r$ est le taux de croissance\\~\\
+          \item mais croissance pas infinie \\
+            $\rightarrow$ densité dépendence négative \\~\\
+            $N_{t+1} = rN_t(1-\frac{N_t}{K})$ \\
+            où $K$ est la capacité de charge pour l'espèce
+          \end{itemize}
+        
+        \end{itemize}
+ 
+        \end{footnotesize}
+             \end{block}
+  
     \end{column}
     \begin{column}[c]{0.5\textwidth}
-       \begin{center}
-        \includegraphics<1>[width=\textwidth]{math}
-        \includegraphics<2>[width=\textwidth]{LV}
-        \includegraphics<3>[width=.8\textwidth]{correlation1}
-        \includegraphics<4>[width=.9\textwidth]{correlation2}
-        \includegraphics<5>[width=\textwidth]{feu}
-        \includegraphics<6>[width=\textwidth]{gosper-1}
-\includegraphics<7>[width=\textwidth]{gosper-2}
-\includegraphics<8>[width=\textwidth]{gosper-3}
-\includegraphics<9>[width=\textwidth]{gosper-4}
-\includegraphics<10>[width=\textwidth]{gosper-5}
-\includegraphics<11>[width=\textwidth]{gosper-6}
-\includegraphics<12>[width=\textwidth]{gosper-7}
-\includegraphics<13>[width=\textwidth]{gosper-8}
-\includegraphics<14>[width=\textwidth]{gosper-9}
-\includegraphics<15>[width=\textwidth]{gosper-10}
-\includegraphics<16>[width=\textwidth]{gosper-11}
-\includegraphics<17>[width=\textwidth]{gosper-12}
-\includegraphics<18>[width=\textwidth]{gosper-13}
-\includegraphics<19>[width=\textwidth]{gosper-14}
-\includegraphics<20>[width=\textwidth]{gosper-15}
-\includegraphics<21>[width=\textwidth]{gosper-16}
-\includegraphics<22>[width=\textwidth]{gosper-17}
-\includegraphics<23>[width=\textwidth]{gosper-18}
-\includegraphics<24>[width=\textwidth]{gosper-19}
-\includegraphics<25>[width=\textwidth]{gosper-20}
-        \includegraphics<26>[width=\textwidth]{gauchedroite}
-        \includegraphics<27>[width=\textwidth]{diagramIBM}
+      \begin{center}
+          \includegraphics<2>[width=\textwidth]{croissance_exp}
+          \includegraphics<3>[width=\textwidth]{croissance_logistique}
+
+      
       \end{center}
     \end{column}
   \end{columns} 
- \end{frame}
+\end{frame}
 
 
+\begin{frame}{Des outils très variés}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{block}{Mathématique appliquées}
+        \begin{footnotesize}
+           \begin{itemize}[<+->]          
+        
+        \item Dynamique de proie prédateur (Lotka-Volterra)
+          \begin{itemize}
+          \item $\frac{dH}{dt}=r_HH - b_HHP$
+          \item $\frac{dP}{dt}=r_Pb_HHP - b_PP$
+          \item où $r$ les coefficient d'accroisement et $b$ les taux de mortalité
+          \end{itemize}
+        \end{itemize}
  
- \section{Dynamiques de populations}
+        \end{footnotesize}
+             \end{block}
+  
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+           \includegraphics<1-3>[width=.75\textwidth]{lynx_lievre_dyn}
+           \includegraphics<4>[width=\textwidth]{Lotka-Volterra_orbits_02}
+           \includegraphics<5->[width=.9\textwidth]{Lotka-Volterra_orbits_01}
+      
+      \end{center}
+    \end{column}
+  \end{columns} 
+\end{frame}
+
+
+\begin{frame}{Des outils très variés}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{block}{Statistiques}
+        \begin{footnotesize}
+           \begin{itemize}[<+->]          
+        \item Recherche de corrélation significative, c'est à dire de
+          relation
+          \begin{itemize}
+          \item sens de la relation
+          \item force de la relation
+          \end{itemize}
+      
+ \end{itemize}
+        \end{footnotesize}
+              \end{block}
+  
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+          \includegraphics<1->[width=\textwidth]{correlation}
+       \end{center}
+    \end{column}
+  \end{columns} 
+\end{frame}
+
+
+
+\begin{frame}{Des outils très variés}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{block}{Statistiques}
+        \begin{footnotesize}
+           \begin{itemize}[<+->]          
+                \item Attention à l'effet cigogne
+          \begin{itemize}
+          \item Corrélation n'est pas causalité
+          \item \tiny{https://www.lemonde.fr/les-decodeurs/article/2019/03/01/correlations-ou-causalite-generez-vos-propres-cartes-pour-ne-rien-demontrer-du-tout$\_$5430063$\_$4355770.html}
+          \end{itemize}
+         
+        \end{itemize}
+
+        \end{footnotesize}
+              \end{block}
+  
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+          \includegraphics<1>[width=.8\textwidth]{naissance_cigogne}
+          \includegraphics<2>[width=.8\textwidth]{correlation1}
+        \includegraphics<3->[width=.9\textwidth]{correlation2}
+       \end{center}
+    \end{column}
+  \end{columns} 
+\end{frame}
+
+
+
+
+
+\begin{frame}{Des outils très variés}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{block}{Automates cellulaires}
+        \begin{footnotesize}
+               Règles simples de dynamique spatiale dans un espace discret
+        \begin{itemize}[<+->]          
+        \item Modélisation des incendies de forêt
+        \item Jeu de la vie
+  
+        \end{footnotesize}
+                  
+        \end{itemize}
+      \end{block}
+      
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{feu}
+        \includegraphics<2>[width=\textwidth]{gosper-1}
+        \includegraphics<3>[width=\textwidth]{gosper-2}
+        \includegraphics<4>[width=\textwidth]{gosper-3}
+        \includegraphics<5>[width=\textwidth]{gosper-4}
+        \includegraphics<6>[width=\textwidth]{gosper-5}
+        \includegraphics<7>[width=\textwidth]{gosper-6}
+        \includegraphics<8>[width=\textwidth]{gosper-7}
+        \includegraphics<9>[width=\textwidth]{gosper-8}
+        \includegraphics<10>[width=\textwidth]{gosper-9}
+        \includegraphics<11>[width=\textwidth]{gosper-10}
+        \includegraphics<12>[width=\textwidth]{gosper-11}
+        \includegraphics<13>[width=\textwidth]{gosper-12}
+        \includegraphics<14>[width=\textwidth]{gosper-13}
+        \includegraphics<15>[width=\textwidth]{gosper-14}
+        \includegraphics<16>[width=\textwidth]{gosper-15}
+        \includegraphics<17>[width=\textwidth]{gosper-16}
+        \includegraphics<18>[width=\textwidth]{gosper-17}
+        \includegraphics<19>[width=\textwidth]{gosper-18}
+        \includegraphics<20>[width=\textwidth]{gosper-19}
+        \includegraphics<21>[width=\textwidth]{gosper-20}
+      \end{center}
+    \end{column}
+  \end{columns} 
+\end{frame}
+
+
+
+
+\begin{frame}{Des outils très variés}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{block}{Automates cellulaires}
+        \begin{footnotesize}
+              Règles simples de dynamique spatiale dans un espace discret
+        \begin{itemize}       
+        \item Modélisation des incendies de forêt
+        \item Jeu de la vie
+          \begin{itemize}[<+->]
+          \item Combien de règles ?
+          \item 2
+            \begin{itemize}
+            \item une cellule morte possédant exactement trois voisines
+              vivantes devient vivante (elle naît) 
+            \item une cellule vivante possédant deux ou trois voisines vivantes le reste, sinon elle meurt.
+            \end{itemize}
+          \end{itemize}
+          
+        \end{itemize}
+  
+        \end{footnotesize}
+        \end{block}
+      
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{gosper-16}
+        \includegraphics<2>[width=\textwidth]{gosper-17}
+        \includegraphics<3>[width=\textwidth]{gosper-18}
+        \includegraphics<4>[width=\textwidth]{gosper-19}
+        \includegraphics<5>[width=\textwidth]{gosper-20}
+      \end{center}
+    \end{column}
+  \end{columns} 
+\end{frame}
+
+
+
+
+
+\begin{frame}{Des outils très variés}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{block}{Modèles individus centrés}
+        \begin{footnotesize}
+          \begin{itemize}[<+->]       
+        \item Modélisation des individus et de la gestion de leur choix de forêt
+        \item Peut être très complexe
+        \item SMA: Système multi-agent (outil : cormas)
+                  
+        \end{itemize}
+  
+        \end{footnotesize}
+        \end{block}
+      
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+         \includegraphics<1>[width=\textwidth]{gauchedroite}
+         \includegraphics<2>[width=\textwidth]{diagramIBM}
+         \includegraphics<3>[width=\textwidth]{sma_ferber_1995}
+      \end{center}
+    \end{column}
+  \end{columns} 
+\end{frame}
+
+
+
+\section{Dynamiques de populations}
 % ===============================================
 
 
@@ -199,33 +403,33 @@
 
 \begin{frame}{Modélisation de niche actuelle}
   \begin{center}
-   \includegraphics[width=\textwidth]{nbArticles1978}
+    \includegraphics[width=\textwidth]{nbArticles1978}
   \end{center}
 \end{frame}
 
 
 \begin{frame}{Modélisation de niche actuelle}
   \begin{center}
-   \includegraphics[width=\textwidth]{modelNiche1}
+    \includegraphics[width=\textwidth]{modelNiche1}
   \end{center}
 \end{frame}
 
 \begin{frame}{Modélisation de niche futur}
   \begin{center}
-   \includegraphics[width=\textwidth]{modelNiche2}
+    \includegraphics[width=\textwidth]{modelNiche2}
   \end{center}
 \end{frame}
 
 
 \begin{frame}{Modélisation... les consensus (BIOMOD)}
   \begin{center}
-   \includegraphics[width=\textwidth]{modelNicheConsensus}
+    \includegraphics[width=\textwidth]{modelNicheConsensus}
   \end{center}
 \end{frame}
 
 \begin{frame}{Niche thermique}
   \begin{center}
-   \includegraphics[width=.9\textwidth]{rangeThermic}
+    \includegraphics[width=.9\textwidth]{rangeThermic}
   \end{center}
 
 \end{frame}
@@ -234,76 +438,76 @@
   \begin{columns}[c]
     \begin{column}[c]{0.5\textwidth}
       \begin{center}
-       Bruant jaune \textit{Emberiza citrinella}
+        Bruant jaune \textit{Emberiza citrinella}
         \vspace{10pt}
         \includegraphics[width=.6\textwidth]{bruantjaune}
-          \vspace{5pt}
-          \includegraphics[width=.8\textwidth]{distributionBruantJaune}   
+        \vspace{5pt}
+        \includegraphics[width=.8\textwidth]{distributionBruantJaune}   
       \end{center}
     \end{column}
     \begin{column}[c]{0.5\textwidth}
-   
-     \begin{center}
-       Bruant zizi \textit{Emberiza cirlus}
+      
+      \begin{center}
+        Bruant zizi \textit{Emberiza cirlus}
         \vspace{10pt}
         \includegraphics[width=.6\textwidth]{bruantzizi}
-          \vspace{5pt}
-          \includegraphics[width=.8\textwidth]{distributionBruantZizi}   
+        \vspace{5pt}
+        \includegraphics[width=.8\textwidth]{distributionBruantZizi}   
       \end{center}
-     \end{column}
+    \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Distribution hivernal: Des dynamiques différentes}
   \begin{center}
-   \includegraphics[width=.9\textwidth]{lanioFicedula}
+    \includegraphics[width=.9\textwidth]{lanioFicedula}
   \end{center}
 \end{frame}
 
 \begin{frame}{Aire de distribution estival}
   \begin{center}
-   \includegraphics[width=.9\textwidth]{nicheRepro}
+    \includegraphics[width=.9\textwidth]{nicheRepro}
   \end{center}
 \end{frame}
 
 
- \begin{frame}{Ex: Outarde de Macqueen \textit{Chlamydotis macqueenii}}
-   \begin{center}
-    \includegraphics[width=.9\textwidth]{mcQueen_male}
-   \end{center}
- \end{frame}
- 
-\begin{frame}{Ex: Outarde de Macqueen - le présent}
-    \begin{columns}
-    \begin{column}[c]{0.5\textwidth}
-    \includegraphics[width=.9\textwidth]{outarde_breeding}
-     \end{column}
-    \begin{column}[l]{0.5\textwidth}
-    \begin{center}
-       \includegraphics[width=\textwidth]{outarde_wintering} 
-  \end{center}
-       \end{column}
-  \end{columns}
-  \end{frame}
-\begin{frame}{Ex: Outarde de Macqueen - le futur}
-    \begin{columns}
-    \begin{column}[c]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{outarde_dpt_breeding}
-     \end{column}
-    \begin{column}[l]{0.5\textwidth}
-    \begin{center}
-       \includegraphics[width=\textwidth]{outarde_dpt_wintering} 
-  \end{center}
-       \end{column}
-  \end{columns}
-\end{frame}
-  
- \begin{frame}{Ex: Outarde de Macqueen - la migration}
+\begin{frame}{Ex: Outarde de Macqueen \textit{Chlamydotis macqueenii}}
   \begin{center}
-   \includegraphics[width=.9\textwidth]{outarde_PlotMigrIBM_Uzbekistan_A6D6}
+    \includegraphics[width=.9\textwidth]{mcQueen_male}
   \end{center}
- \end{frame}
-  
+\end{frame}
+
+\begin{frame}{Ex: Outarde de Macqueen - le présent}
+  \begin{columns}
+    \begin{column}[c]{0.5\textwidth}
+      \includegraphics[width=.9\textwidth]{outarde_breeding}
+    \end{column}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=\textwidth]{outarde_wintering} 
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}{Ex: Outarde de Macqueen - le futur}
+  \begin{columns}
+    \begin{column}[c]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{outarde_dpt_breeding}
+    \end{column}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=\textwidth]{outarde_dpt_wintering} 
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ex: Outarde de Macqueen - la migration}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{outarde_PlotMigrIBM_Uzbekistan_A6D6}
+  \end{center}
+\end{frame}
+
 
 
 \subsection{Le Héron cendré}
@@ -311,97 +515,97 @@
 
 \begin{frame}
   \frametitle{Héron cendré : Biologie}
-    \begin{columns}
+  \begin{columns}
     \begin{column}[c]{0.5\textwidth}
-  \begin{itemize}
-    \item \textit{Ardea cinerea} 
- \item Durée du vie : 25 ans 
- \item 1ère reproduction en général à 2 ans
-  \end{itemize}
+      \begin{itemize}
+      \item \textit{Ardea cinerea} 
+      \item Durée du vie : 25 ans 
+      \item 1ère reproduction en général à 2 ans
+      \end{itemize}
 
-     \end{column}
+    \end{column}
     \begin{column}[l]{0.5\textwidth}
-    \begin{center}
-       \includegraphics[width=\textwidth]{heron} 
-  \end{center}
-       \end{column}
+      \begin{center}
+        \includegraphics[width=\textwidth]{heron} 
+      \end{center}
+    \end{column}
   \end{columns}
   
   
- 
-\begin{itemize}
+  
+  \begin{itemize}
 
- \item Se reproduit au sein d’une colonie
+  \item Se reproduit au sein d’une colonie
   \item Essentiellement piscivore durant la reproduction
- \item Territorial pour l'aire d'alimentation
- \item La distance de l’aire de prospection alimentaire à la colonie ne peut dépasser 40 km (pour être compatible avec l’élevage des jeunes)
-\end{itemize}
- \end{frame}
- 
-%  
-  \begin{frame}{Héron cendré : Biologie}
- \begin{center}
-  Mécanisme de régulation de la colonies
- \end{center}
- \begin{columns}
+  \item Territorial pour l'aire d'alimentation
+  \item La distance de l’aire de prospection alimentaire à la colonie ne peut dépasser 40 km (pour être compatible avec l’élevage des jeunes)
+  \end{itemize}
+\end{frame}
+
+% 
+\begin{frame}{Héron cendré : Biologie}
+  \begin{center}
+    Mécanisme de régulation de la colonies
+  \end{center}
+  \begin{columns}
     \begin{column}[c]{0.4\textwidth}
-     \includegraphics[width=\textwidth]{colonieHeron}    
-     \end{column}
+      \includegraphics[width=\textwidth]{colonieHeron}    
+    \end{column}
     \begin{column}[c]{0.6\textwidth}
       \includegraphics[width=\textwidth]{saturationColonie}    
-           \end{column}
+    \end{column}
   \end{columns}
-%   
- \end{frame}
+  % 
+\end{frame}
 
- 
- 
- 
+
+
+
 \begin{frame}
   \frametitle{Héron cendré : Distribution actuel}
   \begin{center}
-       \includegraphics[width=0.8\textwidth]{distributionHeron} 
+    \includegraphics[width=0.8\textwidth]{distributionHeron} 
   \end{center}
-\begin{itemize}
- \item  La majeur partie de l’ancien continent sans l’Australasie, les déserts, et la plupart de l’Océanie
-\item Population mondiale : 236 000 – 281 000 couples nicheurs
-\item Population européenne : 150 000 – 180 000 couples nicheurs
-\end{itemize}
- \end{frame}
+  \begin{itemize}
+  \item  La majeur partie de l’ancien continent sans l’Australasie, les déserts, et la plupart de l’Océanie
+  \item Population mondiale : 236 000 – 281 000 couples nicheurs
+  \item Population européenne : 150 000 – 180 000 couples nicheurs
+  \end{itemize}
+\end{frame}
 
 
- \begin{frame}
+\begin{frame}
   \frametitle{Héron cendré : Histoire}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
-     \begin{itemize}
+      \begin{itemize}
       \item Considéré comme nuisible jusqu'en 1974
       \item 2 colonies au début du $XX^{ème}$ siècle
       \item Recolonisation depuis 1974 (espèce protégé)
       \item Progression lente des effectifs à la faveur des deux guerres
-     \end{itemize}
-     \end{column}
+      \end{itemize}
+    \end{column}
     \begin{column}[l]{0.4\textwidth}
       \includegraphics<1>[width=\textwidth]{heron2}    
       \includegraphics<2->[width=\textwidth]{colonieRefuge}    
-     \end{column}
+    \end{column}
   \end{columns}
-  \end{frame}
- 
- 
- \begin{frame}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Héron cendré : Re-colonisation}
   \begin{columns}
     \begin{column}[c]{0.3\textwidth}
-     \begin{itemize}[<+->]
+      \begin{itemize}[<+->]
       \item 1962
       \item 1974
       \item 1981
       \item 1989
       \item 1994
       \item 2000
-     \end{itemize}
-     \end{column}
+      \end{itemize}
+    \end{column}
     \begin{column}[l]{0.7\textwidth}
       \includegraphics<1>[width=\textwidth]{distribution1962}  
       \includegraphics<2>[width=\textwidth]{distribution1974} 
@@ -409,185 +613,185 @@
       \includegraphics<4>[width=\textwidth]{distribution1989} 
       \includegraphics<5>[width=\textwidth]{distribution1994} 
       \includegraphics<6>[width=\textwidth]{distribution2000} 
-     \end{column}
+    \end{column}
   \end{columns}
-  \end{frame}
- 
- 
+\end{frame}
 
- 
+
+
+
 \begin{frame}{Objectif}
-\begin{itemize}[<+->]
- \item Modéliser le rôle du paysage dans le choix de la localisation des colonies d’une échelle locale à une échelle nationale
- \begin{itemize}
-  \item Déterminer les zones favorables à l’espèces
-  \item Modéliser la dynamiques spatio-temporelles
-   \begin{itemize}
-   \item Paramètres du paysage
-   \item Inter-action entre les individus
-   \end{itemize}
- \item Gérer le risque de conflits avec les pisciculteurs 
- \end{itemize}
-\end{itemize}
-\end{frame}
- 
- 
-
- 
-
- 
- \begin{frame}{La niche écologique}
- \begin{block}{Ecological Niche Factor Analysis (ENFA)}
- \begin{itemize}
- \item Méthode de modélisation des habitats potentiels
- \item Analyse factorielle ( proche de l’ACP ) de la niche écologiques
- \item Utilisation des seules données de présence de l’espèce pour la modélisation
-  \item Caractérisation de la niche écologique de l’espèce étudiée par les variables écogéographiques prises en comptes
-  \item Utilisation de la caractérisation de la niche écologique pour créer les cartes d’habitats favorables 
+  \begin{itemize}[<+->]
+  \item Modéliser le rôle du paysage dans le choix de la localisation des colonies d’une échelle locale à une échelle nationale
+    \begin{itemize}
+    \item Déterminer les zones favorables à l’espèces
+    \item Modéliser la dynamiques spatio-temporelles
+      \begin{itemize}
+      \item Paramètres du paysage
+      \item Inter-action entre les individus
+      \end{itemize}
+    \item Gérer le risque de conflits avec les pisciculteurs 
+    \end{itemize}
   \end{itemize}
- \end{block}
- \end{frame}
+\end{frame}
 
 
- 
-  \begin{frame}{Les variables éco-géographiques}
+
+
+
+
+\begin{frame}{La niche écologique}
+  \begin{block}{Ecological Niche Factor Analysis (ENFA)}
+    \begin{itemize}
+    \item Méthode de modélisation des habitats potentiels
+    \item Analyse factorielle ( proche de l’ACP ) de la niche écologiques
+    \item Utilisation des seules données de présence de l’espèce pour la modélisation
+    \item Caractérisation de la niche écologique de l’espèce étudiée par les variables écogéographiques prises en comptes
+    \item Utilisation de la caractérisation de la niche écologique pour créer les cartes d’habitats favorables 
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Les variables éco-géographiques}
   Prise en compte de 20 Variables Ecogéographiques
-     \vspace{20pt}
-   \begin{columns}
+  \vspace{20pt}
+  \begin{columns}
     \begin{column}[c]{0.4\textwidth}
- \begin{itemize}[<+->]
-  \item  Réseau hydrographique
-   \item Paysage
-   \item Topographie
-   \item Perturbations anthropiques
-\end{itemize}
-     \end{column}
+      \begin{itemize}[<+->]
+      \item  Réseau hydrographique
+      \item Paysage
+      \item Topographie
+      \item Perturbations anthropiques
+      \end{itemize}
+    \end{column}
     \begin{column}[c]{0.6\textwidth}
- \includegraphics[width=\textwidth]{photoVariableEco} 
-      \end{column}
+      \includegraphics[width=\textwidth]{photoVariableEco} 
+    \end{column}
   \end{columns}
- \end{frame}
-
- 
-   \begin{frame}{Caractérisation de la niche}
-  Caractérisation de la niche écologique par :
-   \vspace{20pt}
-   \begin{columns}
-    \begin{column}[c]{0.5\textwidth}
- \begin{itemize}[<+->]
-  \item  Importance des zones de marais
-   \item La densité de canaux et de fossés
-   \item Hétérogénéité des habitats
-\end{itemize}
-     \end{column}
-    \begin{column}[c]{0.5\textwidth}
- \includegraphics[width=.8\textwidth]{heron3} 
-      \end{column}
-  \end{columns}
- \end{frame}
- 
- 
-
-    \begin{frame}{Sur la France}
- \begin{center}
-Les habitats potentiels sur l’ensemble du territoire:
-\vspace{10pt}
- \includegraphics[width=.5\textwidth]{HSFrance}
-\end{center}
-  \end{frame}
- 
- 
-
- \begin{frame}{La grille}
-  \begin{itemize}
-   \item France découpée selon une grille  
- \item Chaque cellule 10 Km sur 10 Km
- \item Une cellule possèdent 2 attributs : 
-\begin{itemize}
- \item le nombre de colonies qu’elle contient (issu des recensement)
- \item une valeur de qualité d’habitat (HS)
-\end{itemize}
-  \end{itemize}
-   \end{frame}
- 
-  \begin{frame}{La grille : les rasters}
-   \begin{center}
-\textcolor{red}{Préparation des données sous SIG}\\
-  \end{center}
-     \begin{columns}
-    \begin{column}[c]{0.5\textwidth}
-\begin{center}
- \includegraphics[width=.95\textwidth]{grilleHS}
-\end{center}
-     \end{column}
-    \begin{column}[c]{0.5\textwidth}
-\begin{center}
-
-\includegraphics[width=.95\textwidth]{init}
-\end{center}
-      \end{column}
-  \end{columns}
-
- \end{frame}
- 
- \begin{frame}{Paramètres de la dynamique}
- \includegraphics[width=.95\textwidth]{grilleParametreAutomate}
- \end{frame}
-
- 
- 
-\begin{frame}{Les règles d’installation}
-Les règles d'installations sont définit par analyse statistique (GLM): 
-     \begin{columns}
-    \begin{column}[c]{0.5\textwidth}
-\begin{block}{Loire-Atlantique}
- \begin{itemize}
-  \item Pas d'effets des colonies et des effectifs
- \item Seul HS (Habitat Suitability) est conservé 
- \end{itemize}
-\end{block}
-
-     \end{column}
-    \begin{column}[c]{0.5\textwidth}
-\begin{block}{France}
- \begin{itemize}
-  \item Présence de colonies à plus ou moindre proximité 
- \item Pas d'effet des effectifs
- \item Densité dépendance : les variables au carré possèdent des estimateurs négatifs
-  \end{itemize}
-
-\end{block}
-      \end{column}
-  \end{columns}
-
- 
 \end{frame}
 
- 
 
-  \begin{frame}{Dynamique spatio-temporelle}
-\begin{center}
- \includegraphics[width=\textwidth]{dynamiqueFitHeron}
+\begin{frame}{Caractérisation de la niche}
+  Caractérisation de la niche écologique par :
+  \vspace{20pt}
+  \begin{columns}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item  Importance des zones de marais
+      \item La densité de canaux et de fossés
+      \item Hétérogénéité des habitats
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \includegraphics[width=.8\textwidth]{heron3} 
+    \end{column}
+  \end{columns}
+\end{frame}
 
- (a) 1985, (b) 1994, (c) 2001
-\end{center}
- \end{frame}
- 
+
+
+\begin{frame}{Sur la France}
+  \begin{center}
+    Les habitats potentiels sur l’ensemble du territoire:
+    \vspace{10pt}
+    \includegraphics[width=.5\textwidth]{HSFrance}
+  \end{center}
+\end{frame}
+
+
+
+\begin{frame}{La grille}
+  \begin{itemize}
+  \item France découpée selon une grille  
+  \item Chaque cellule 10 Km sur 10 Km
+  \item Une cellule possèdent 2 attributs : 
+    \begin{itemize}
+    \item le nombre de colonies qu’elle contient (issu des recensement)
+    \item une valeur de qualité d’habitat (HS)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{La grille : les rasters}
+  \begin{center}
+    \textcolor{red}{Préparation des données sous SIG}\\
+  \end{center}
+  \begin{columns}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=.95\textwidth]{grilleHS}
+      \end{center}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+
+        \includegraphics[width=.95\textwidth]{init}
+      \end{center}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Paramètres de la dynamique}
+  \includegraphics[width=.95\textwidth]{grilleParametreAutomate}
+\end{frame}
+
+
+
+\begin{frame}{Les règles d’installation}
+  Les règles d'installations sont définit par analyse statistique (GLM): 
+  \begin{columns}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{block}{Loire-Atlantique}
+        \begin{itemize}
+        \item Pas d'effets des colonies et des effectifs
+        \item Seul HS (Habitat Suitability) est conservé 
+        \end{itemize}
+      \end{block}
+
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{block}{France}
+        \begin{itemize}
+        \item Présence de colonies à plus ou moindre proximité 
+        \item Pas d'effet des effectifs
+        \item Densité dépendance : les variables au carré possèdent des estimateurs négatifs
+        \end{itemize}
+
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  
+\end{frame}
+
+
+
+\begin{frame}{Dynamique spatio-temporelle}
+  \begin{center}
+    \includegraphics[width=\textwidth]{dynamiqueFitHeron}
+
+    (a) 1985, (b) 1994, (c) 2001
+  \end{center}
+\end{frame}
+
 \begin{frame}{Changement de comportement}
-\begin{center}
-  \includegraphics[width=.6\textwidth]{nbColEtHS}
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{nbColEtHS}
 
-\end{center}
+  \end{center}
 
- \end{frame}
- 
+\end{frame}
+
 
 
 
 \begin{frame}{Conclusion}
- \begin{itemize}
-\item Projection de la dynamique futur  
-\item Définition des zones à risque d'interaction avec activitées humaines
+  \begin{itemize}
+  \item Projection de la dynamique futur  
+  \item Définition des zones à risque d'interaction avec activitées humaines
 
   \end{itemize}
 
@@ -597,152 +801,152 @@ Les règles d'installations sont définit par analyse statistique (GLM):
 
 
 \subsection{L'Ecureuil à ventre rouge}
- \begin{frame}{L'Ecureuil à ventre rouge}
-\begin{center}
-  \includegraphics[width=.7\textwidth]{squirrelPhoto1}
-\end{center}
- \end{frame}
- 
- \begin{frame}{L'Ecureuil à ventre rouge}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel1}
-\end{center}
- \end{frame}
+\begin{frame}{L'Ecureuil à ventre rouge}
+  \begin{center}
+    \includegraphics[width=.7\textwidth]{squirrelPhoto1}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{L'espèce}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel2}
-\end{center}
- \end{frame}
+\begin{frame}{L'Ecureuil à ventre rouge}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel1}
+  \end{center}
+\end{frame}
 
- 
 
- \begin{frame}{Dynamique de colonisation}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel3}
-\end{center}
- \end{frame}
+\begin{frame}{L'espèce}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel2}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{Structuration du modèle}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel4}
-\end{center}
- \end{frame}
 
- 
- \begin{frame}{Discrétisation de l'habitat}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel5}
-\end{center}
- \end{frame}
 
- 
- \begin{frame}{Estimations des capacités de charges}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel6}
-\end{center}
- \end{frame}
+\begin{frame}{Dynamique de colonisation}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel3}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Structuration du modèle}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel4}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Discrétisation de l'habitat}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel5}
+  \end{center}
+\end{frame}
+
 
 \begin{frame}{Estimations des capacités de charges}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel7}
-\end{center}
- \end{frame}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel6}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{Estimations de la connectivité}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel8}
-\end{center}
- \end{frame}
+\begin{frame}{Estimations des capacités de charges}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel7}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{Estimations de la connectivité}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel9}
-\end{center}
- \end{frame}
 
- 
- \begin{frame}{L'automate cellulaire}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel10}
-\end{center}
- \end{frame}
+\begin{frame}{Estimations de la connectivité}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel8}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{L'automate cellulaire}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel11}
-\end{center}
- \end{frame}
 
- 
- \begin{frame}{Dynamique de populations}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel12}
-\end{center}
- \end{frame}
+\begin{frame}{Estimations de la connectivité}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel9}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{Projection}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel13}
-\end{center}
- \end{frame}
+
+\begin{frame}{L'automate cellulaire}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel10}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{L'automate cellulaire}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel11}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Dynamique de populations}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel12}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Projection}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel13}
+  \end{center}
+\end{frame}
 \begin{frame}{Calibration}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel14}
-\end{center}
- \end{frame}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel14}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{Projection de l'expansion}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel15}
-\end{center}
- \end{frame}
 
- 
- \begin{frame}{Scénario de gestion}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel16}
-\end{center}
- \end{frame}
+\begin{frame}{Projection de l'expansion}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel15}
+  \end{center}
+\end{frame}
 
- 
- \begin{frame}{Effet de la capture sur la dynamique}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel17}
-\end{center}
- \end{frame}
 
- 
- \begin{frame}{Effet des scénarios de capture}
-\begin{center}
-  \includegraphics[width=.6\textwidth]{squirrel18}
-\end{center}
- \end{frame}
+\begin{frame}{Scénario de gestion}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel16}
+  \end{center}
+\end{frame}
 
-  
- \begin{frame}{L'autoroute une barrière valorisable}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel20}
-\end{center}
- \end{frame}
- 
- 
- \begin{frame}{Conclusion}
-\begin{center}
-  \includegraphics[width=.9\textwidth]{squirrel19}
-\end{center}
- \end{frame}
- 
-%=======================================================
+
+\begin{frame}{Effet de la capture sur la dynamique}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel17}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Effet des scénarios de capture}
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{squirrel18}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{L'autoroute une barrière valorisable}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel20}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Conclusion}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{squirrel19}
+  \end{center}
+\end{frame}
+
+% =======================================================
 \section{Dynamique des communautés}
-%=======================================================
+% =======================================================
 
 
 % ------------------------------------------------
@@ -761,7 +965,7 @@ Les règles d'installations sont définit par analyse statistique (GLM):
     \end{column}
     \begin{column}[l]{0.4\textwidth}
       \includegraphics[width=0.5\textwidth]{Diamond}    
-     \end{column}
+    \end{column}
   \end{columns}
 \end{frame}
 
@@ -804,13 +1008,13 @@ Les règles d'installations sont définit par analyse statistique (GLM):
 
 
 \begin{frame}{Les mesures de connectivités du paysage}
-\textcolor{red}{\textbf{Pas de consensus}\\  }
+  \textcolor{red}{\textbf{Pas de consensus}\\  }
   Classement des mesures en fonction des données utilisées \\ 
   \textit{{\scriptsize Calabrese et al.2004, : Minor et al. 2009}} \\
-\vspace{5pt}
-\begin{center}
-  \includegraphics[width=0.75\textwidth]{mesureConnect}
-\end{center}
+  \vspace{5pt}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{mesureConnect}
+  \end{center}
 \end{frame}
 
 
@@ -900,10 +1104,10 @@ Les règles d'installations sont définit par analyse statistique (GLM):
 
 \begin{frame}{Principe du modèle}
   \begin{center}
-  Caractériser l'effet de la perméabilité sur la structuration des méta-communautés\\
-  \vspace{10pt}
-  \includegraphics[width=0.5\textwidth]{principeModelConnect.png}
-  
+    Caractériser l'effet de la perméabilité sur la structuration des méta-communautés\\
+    \vspace{10pt}
+    \includegraphics[width=0.5\textwidth]{principeModelConnect.png}
+    
   \end{center}
 \end{frame}
 
@@ -947,28 +1151,28 @@ Les règles d'installations sont définit par analyse statistique (GLM):
 \end{frame}
 
 \begin{frame}{Mesure de la force des connections}
-\textbf{Chemin le plus court} entre deux patchs\\
-\textit{Les autres patchs sont utilisés comme relais}\\
-\vspace{15pt}
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{indicReseau1.png}
-\end{center}
+  \textbf{Chemin le plus court} entre deux patchs\\
+  \textit{Les autres patchs sont utilisés comme relais}\\
+  \vspace{15pt}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{indicReseau1.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Mesure de la force des connections}
-\textbf{Flux maximal} ente deux patchs\\
-\textit{Nombre de chemins indépendants (directs ou indirects)}\\
-\vspace{15pt}
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{indicReseau2.png}
-\end{center}
+  \textbf{Flux maximal} ente deux patchs\\
+  \textit{Nombre de chemins indépendants (directs ou indirects)}\\
+  \vspace{15pt}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{indicReseau2.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Calibration}
-\begin{center}
-\includegraphics<1>[width=.75\textwidth]{calibration1}
-\includegraphics<2>[width=.75\textwidth]{calibration2}
-\end{center}
+  \begin{center}
+    \includegraphics<1>[width=.75\textwidth]{calibration1}
+    \includegraphics<2>[width=.75\textwidth]{calibration2}
+  \end{center}
 \end{frame}
 
 
@@ -1003,100 +1207,90 @@ Les règles d'installations sont définit par analyse statistique (GLM):
 
 
 \begin{frame}{Et avec un automate cellulaire}
-        \begin{center}
-        \includegraphics<1>[width=.8\textwidth]{carteRomain2000m8couleurs}
-      
-        \end{center}
+  \begin{center}
+    \includegraphics<1>[width=.8\textwidth]{carteRomain2000m8couleurs}
+    
+  \end{center}
 
-        
-   
+  
+  
 \end{frame}
 
- 
- 
- 
- \subsection{Oiseaux agricole, changements globaux et taux de migration}
- 
- \begin{frame}[Les oiseaux agricoles]
+
+
+
+\subsection{Oiseaux agricole, changements globaux et taux de migration}
+
+\begin{frame}[Les oiseaux agricoles]
   \includegraphics[width=\textwidth]{transition}
 \end{frame}
 
 
- \begin{frame}{Indicateur européen et français}
-\begin{center}
- \includegraphics<1>[width=.75\textwidth]{indicEurope}
-  \includegraphics<2>[width=.7\textwidth]{tendenceIndicateurOiseau}\\
-  \includegraphics<2>[width=\textwidth]{spAgri}
- \end{center}
+\begin{frame}{Indicateur européen et français}
+  \begin{center}
+    \includegraphics<1>[width=.75\textwidth]{indicEurope}
+    \includegraphics<2>[width=.7\textwidth]{tendenceIndicateurOiseau}\\
+    \includegraphics<2>[width=\textwidth]{spAgri}
+  \end{center}
 \end{frame}
 
 
 \begin{frame}{Protocole STOC (Breeding Bird Survey)}
-    \begin{center}
-      STOC: \textcolor{red}{S}uivi \textcolor{red}{T}emporel des \textcolor{red}{O}iseaux \textcolor{red}{C}ommuns
+  \begin{center}
+    STOC: \textcolor{red}{S}uivi \textcolor{red}{T}emporel des \textcolor{red}{O}iseaux \textcolor{red}{C}ommuns
   \end{center}
- \begin{columns}[c]
+  \begin{columns}[c]
     \begin{column}[c]{0.5\textwidth}
       \begin{center}
-      2300 carrés suivis au moins une fois entre 2001 et 2013 \\
-    \includegraphics[width=.8\textwidth]{stoc_carre_2001-2013}
+        2300 carrés suivis au moins une fois entre 2001 et 2013 \\
+        \includegraphics[width=.8\textwidth]{stoc_carre_2001-2013}
       \end{center}
     \end{column}
     \begin{column}[c]{0.5\textwidth}
-    \begin{small}
-      \begin{itemize}
-      \item  Sites choisie aléatoirement
-    \item 10 pts d'écoute de 5mn par site
-    \item 2 passages pas an
-    \item Description standardisée de l'hab.
-    \end{itemize}
-    \end{small}
-     \begin{center}
-       \includegraphics[width=.7\textwidth]{STOC_points}
-  \end{center}
+      \begin{small}
+        \begin{itemize}
+        \item  Sites choisie aléatoirement
+        \item 10 pts d'écoute de 5mn par site
+        \item 2 passages pas an
+        \item Description standardisée de l'hab.
+        \end{itemize}
+      \end{small}
+      \begin{center}
+        \includegraphics[width=.7\textwidth]{STOC_points}
+      \end{center}
     \end{column}
   \end{columns}
- \begin{center}
-  175 espèces suivies
+  \begin{center}
+    175 espèces suivies
   \end{center}
 \end{frame}
 
 \begin{frame}{Protocole STOC: Alouette des champs (\textit{Alauda arvensis})}
   \begin{columns}[c]
     \begin{column}[c]{0.5\textwidth}
-    \includegraphics[width=.5\textwidth]{Alouette}
-     \begin{itemize}[<+->]
+      \includegraphics[width=.5\textwidth]{Alouette}
+      \begin{itemize}[<+->]
       \item  Tendance :
-            \begin{itemize}
-      \item $-22\%$ depuis 1989, déclin
-      \item $-10\%$ depuis 2001, diminution
+        \begin{itemize}
+        \item $-22\%$ depuis 1989, déclin
+        \item $-10\%$ depuis 2001, diminution
+        \end{itemize}
+      \item Distribution géographique par espèce
       \end{itemize}
-    \item Distribution géographique par espèce
-    \end{itemize}
     \end{column}
     \begin{column}[c]{0.5\textwidth}
-     \begin{center}
-       \includegraphics<1-3>[width=.9\textwidth]{tendanceAlouette}
-    \includegraphics<4->[width=.9\textwidth]{distributionAlouette} 
-  \end{center}
+      \begin{center}
+        \includegraphics<1-3>[width=.9\textwidth]{tendanceAlouette}
+        \includegraphics<4->[width=.9\textwidth]{distributionAlouette} 
+      \end{center}
     \end{column}
   \end{columns}
 \end{frame}
 
 
 \begin{frame}{Suivre ou ne pas suivre sa niche climatique…}
- \begin{center}
-   \includegraphics[width=.9\textwidth]{CTI}
- \end{center}
-
- \begin{tiny}
-    Devictor et al. 2008
-  \end{tiny}
-\end{frame}
-
-\begin{frame}{Suivre ou ne pas suivre sa niche climatique…}
   \begin{center}
-   \includegraphics[width=.6\textwidth]{CTI_lat}
+    \includegraphics[width=.9\textwidth]{CTI}
   \end{center}
 
   \begin{tiny}
@@ -1106,7 +1300,17 @@ Les règles d'installations sont définit par analyse statistique (GLM):
 
 \begin{frame}{Suivre ou ne pas suivre sa niche climatique…}
   \begin{center}
-   \includegraphics[width=.6\textwidth]{CTIevolution}
+    \includegraphics[width=.6\textwidth]{CTI_lat}
+  \end{center}
+
+  \begin{tiny}
+    Devictor et al. 2008
+  \end{tiny}
+\end{frame}
+
+\begin{frame}{Suivre ou ne pas suivre sa niche climatique…}
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{CTIevolution}
   \end{center}
 
   \begin{tiny}
@@ -1119,55 +1323,55 @@ Les règles d'installations sont définit par analyse statistique (GLM):
 
 
 \begin{frame}{L'agriculture}
- \begin{columns}[c]
+  \begin{columns}[c]
     \begin{column}[c]{0.4\textwidth}
-     \begin{center}
-       En Europe: \\ Agriculture $\approx 50\%$  surface 
-     \end{center}
-    \end{column}
-     \begin{column}[c]{0.6\textwidth}
       \begin{center}
-     \includegraphics[width=0.9\textwidth]{agriEurope}
+        En Europe: \\ Agriculture $\approx 50\%$  surface 
+      \end{center}
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{agriEurope}
       \end{center}
       \begin{tiny}
-    Temme et Verburg, 2011
-  \end{tiny}
+        Temme et Verburg, 2011
+      \end{tiny}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Evolution paysage agricole}
-\begin{center}
-Evolution des paysages agricoles au cours des dernières décennies \\
-\vspace{10pt}
- \includegraphics[width=\textwidth]{evolutionPaysageAgri}
- \vspace{10pt}
- \textcolor{red}{Homogénéisation du paysage et des pratiques}
- \end{center}
+  \begin{center}
+    Evolution des paysages agricoles au cours des dernières décennies \\
+    \vspace{10pt}
+    \includegraphics[width=\textwidth]{evolutionPaysageAgri}
+    \vspace{10pt}
+    \textcolor{red}{Homogénéisation du paysage et des pratiques}
+  \end{center}
 \end{frame}
 
 
 
- 
- 
- \begin{frame}{Objectif}
-   \begin{itemize}[<+->]
-      \item Comment les espèces déplacent leur aire de distribution
+
+
+\begin{frame}{Objectif}
+  \begin{itemize}[<+->]
+  \item Comment les espèces déplacent leur aire de distribution
     \begin{itemize}
-     \item scénario agricole
-     \item Outil d'aide à la décision
+    \item scénario agricole
+    \item Outil d'aide à la décision
     \end{itemize}
-    \end{itemize}
+  \end{itemize}
 \end{frame}
 
- \begin{frame}{Hypothèses}
-   \begin{itemize}[<+->]
-      \item Capacité de déplacement des aires très difficile à estimé
+\begin{frame}{Hypothèses}
+  \begin{itemize}[<+->]
+  \item Capacité de déplacement des aires très difficile à estimé
     \begin{itemize}
-     \item proxy : taux d'échange d'individus = taux de migration    
+    \item proxy : taux d'échange d'individus = taux de migration    
     \end{itemize}
-    \item proposition d'un modèle mécaniste pour l'estimer
-    \end{itemize}
+  \item proposition d'un modèle mécaniste pour l'estimer
+  \end{itemize}
 \end{frame}
 
 
@@ -1175,260 +1379,260 @@ Evolution des paysages agricoles au cours des dernières décennies \\
 
 
 \begin{frame}{Petites Région Agricoles}
+  
+  \begin{columns}[c]
+    \begin{column}{.65\textwidth}
+      \begin{center}
         
-\begin{columns}[c]
- \begin{column}{.65\textwidth}
- \begin{center}
- 
-    \includegraphics[width=\textwidth]{pra}
-\end{center}
- \end{column}
-\begin{column}{.45\textwidth}
+        \includegraphics[width=\textwidth]{pra}
+      \end{center}
+    \end{column}
+    \begin{column}{.45\textwidth}
 
 
 
- 713 Small Agricultural Region ($PRA$)
+      713 Small Agricultural Region ($PRA$)
 
-\begin{itemize}
-  \item formes variables
-  \item tailles variables
- \end{itemize}
- 
-  \end{column}
-\end{columns}
-  \end{frame}
+      \begin{itemize}
+      \item formes variables
+      \item tailles variables
+      \end{itemize}
+      
+    \end{column}
+  \end{columns}
+\end{frame}
 
 
 
 
 \begin{frame}{Meta-communauté face aux perturbations}
-\begin{columns}
- \begin{column}[c]{0.45\textwidth}
-  \begin{center}
-    \includegraphics<1>[width=\textwidth]{metapopulations0}
-    \includegraphics<2>[width=\textwidth]{metapopulations1}
-    \includegraphics<3>[width=\textwidth]{metapopulations2}
-    \includegraphics<4>[width=\textwidth]{metapopulations3}
-    \includegraphics<5->[width=\textwidth]{metapopulations4}
-\end{center}
- \end{column}
-\begin{column}[c]{0.6\textwidth}
-\begin{small}
-  \begin{itemize}[<+->]
-   \item Dynamique locales en fonction de variable locales
-   \item Taux de dispersion essentiel
-   \end{itemize}
- \end{small}
- \end{column}
-\end{columns}
+  \begin{columns}
+    \begin{column}[c]{0.45\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{metapopulations0}
+        \includegraphics<2>[width=\textwidth]{metapopulations1}
+        \includegraphics<3>[width=\textwidth]{metapopulations2}
+        \includegraphics<4>[width=\textwidth]{metapopulations3}
+        \includegraphics<5->[width=\textwidth]{metapopulations4}
+      \end{center}
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{small}
+        \begin{itemize}[<+->]
+        \item Dynamique locales en fonction de variable locales
+        \item Taux de dispersion essentiel
+        \end{itemize}
+      \end{small}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
 
-  \begin{frame}{Modèle mécaniste de metapop}
+\begin{frame}{Modèle mécaniste de metapop}
   \begin{footnotesize}
-  \begin{equation}
-  N_{i,j}(t+1) = N_{i,j}(t) + r_{i}N_{i,j}(t)\left(1-\frac{N_{i,j}(t)}{\textcolor{blue}{K_{i,j}(t)}} \right)+\textcolor{red}{\bm{\tau_i}}\textcolor{orange}{\left( N_{ij}(t) - \sum_{\scriptsize j' \mbox{ close to }j} \hspace{-0.3 cm} N_{ij'}(t) \right)} 
-  \label{eq_logistic_abondance_linear}
-  \end{equation}
-  \begin{itemize}
-   \item $r_{i}$ taux de croissance intrinsèque
-   \item $\textcolor{blue}{K_{i,j}(t)}$ capacité de charge
-   \item $\textcolor{red}{\tau_i}$ taux de dispersion
-   \end{itemize}
- \end{footnotesize}
- \end{frame}
+    \begin{equation}
+      N_{i,j}(t+1) = N_{i,j}(t) + r_{i}N_{i,j}(t)\left(1-\frac{N_{i,j}(t)}{\textcolor{blue}{K_{i,j}(t)}} \right)+\textcolor{red}{\bm{\tau_i}}\textcolor{orange}{\left( N_{ij}(t) - \sum_{\scriptsize j' \mbox{ close to }j} \hspace{-0.3 cm} N_{ij'}(t) \right)} 
+      \label{eq_logistic_abondance_linear}
+    \end{equation}
+    \begin{itemize}
+    \item $r_{i}$ taux de croissance intrinsèque
+    \item $\textcolor{blue}{K_{i,j}(t)}$ capacité de charge
+    \item $\textcolor{red}{\tau_i}$ taux de dispersion
+    \end{itemize}
+  \end{footnotesize}
+\end{frame}
 
 \begin{frame}{Abundance $N$}
-       \begin{columns}[c]
-        \begin{column}{.7\textwidth}
-  \includegraphics<1>[width=\textwidth]{praSTOCspecies1}  
-    \includegraphics<2>[width=\textwidth]{praSTOCspecies2} 
+  \begin{columns}[c]
+    \begin{column}{.7\textwidth}
+      \includegraphics<1>[width=\textwidth]{praSTOCspecies1}  
+      \includegraphics<2>[width=\textwidth]{praSTOCspecies2} 
       \includegraphics<3>[width=\textwidth]{praSTOCspecies3}      
-        \end{column}
-\begin{column}{.3\textwidth}
-         37 species 
-         \begin{itemize}[<+->]
-         \item 23 farmland bird species 
-         \item 14 generalist birds species
+    \end{column}
+    \begin{column}{.3\textwidth}
+      37 species 
+      \begin{itemize}[<+->]
+      \item 23 farmland bird species 
+      \item 14 generalist birds species
 
-\end{itemize}          
-        \end{column}
-       \end{columns}
-      
-  \end{frame} 
- 
- 
- 
+      \end{itemize}          
+    \end{column}
+  \end{columns}
+  
+\end{frame} 
 
- \begin{frame}{$\tau$ : taux de migration}
-             \begin{center}
-  \includegraphics<1>[width=0.9\textwidth]{exemplePRA}
-   \includegraphics<2>[width=0.9\textwidth]{exemplePRABuff10000}
+
+
+
+\begin{frame}{$\tau$ : taux de migration}
+  \begin{center}
+    \includegraphics<1>[width=0.9\textwidth]{exemplePRA}
+    \includegraphics<2>[width=0.9\textwidth]{exemplePRABuff10000}
     \includegraphics<3>[width=0.9\textwidth]{exemplePRABuff50000}
-       \end{center}
-  \end{frame} 
- 
+  \end{center}
+\end{frame} 
 
- \begin{frame}{$K$ : capacité de charge}
- 13 variables temp, precip, ...
-              \begin{center}
-  \includegraphics<1>[width=0.8\textwidth]{dataClimat}
-   \includegraphics<2>[width=0.8\textwidth]{praClimat}
+
+\begin{frame}{$K$ : capacité de charge}
+  13 variables temp, precip, ...
+  \begin{center}
+    \includegraphics<1>[width=0.8\textwidth]{dataClimat}
+    \includegraphics<2>[width=0.8\textwidth]{praClimat}
     \includegraphics<3>[width=0.8\textwidth]{pcaBiplotClimat}
-        \includegraphics<4>[width=0.8\textwidth]{pcaAxe1Climat}
-       \end{center}
-  \end{frame} 
- 
-  \begin{frame}{$R$ : taux de croissance}
-\begin{small}
-\begin{equation}
-   R_i(t) = \sum_{u=1}^7 a_u A_{iu}(t)
-\label{eq_R}
-\end{equation}
-\end{small}
- \end{frame}
+    \includegraphics<4>[width=0.8\textwidth]{pcaAxe1Climat}
+  \end{center}
+\end{frame} 
 
-  \begin{frame}{$K$ : capacité de charge}
-    OTEX: orientation téchnico-économique $\Rightarrow$ 7 variables de types d'occupation du sol
-    
-    \begin{itemize}
- \item CROP 
- \item INDUS\_CROP 
- \item OTHER\_CROP 
- \item PERENIAL
- \item LIVESTOCK
- \item POLYCULTURE
- \item GRANIVORE
-\end{itemize}
+\begin{frame}{$R$ : taux de croissance}
+  \begin{small}
+    \begin{equation}
+      R_i(t) = \sum_{u=1}^7 a_u A_{iu}(t)
+      \label{eq_R}
+    \end{equation}
+  \end{small}
+\end{frame}
+
+\begin{frame}{$K$ : capacité de charge}
+  OTEX: orientation téchnico-économique $\Rightarrow$ 7 variables de types d'occupation du sol
+  
+  \begin{itemize}
+  \item CROP 
+  \item INDUS\_CROP 
+  \item OTHER\_CROP 
+  \item PERENIAL
+  \item LIVESTOCK
+  \item POLYCULTURE
+  \item GRANIVORE
+  \end{itemize}
 
 
-  \end{frame} 
- 
- 
+\end{frame} 
 
- \begin{frame}{Indice de Spécialisation des espèces (SSI)}
- \begin{columns}[c]
+
+
+\begin{frame}{Indice de Spécialisation des espèces (SSI)}
+  \begin{columns}[c]
     \begin{column}[c]{0.55\textwidth}
       \begin{center}
-               \includegraphics<1-2>[width=\textwidth]{SSI1}
-               \includegraphics<3->[width=\textwidth]{SSI2}
+        \includegraphics<1-2>[width=\textwidth]{SSI1}
+        \includegraphics<3->[width=\textwidth]{SSI2}
       \end{center}
     \end{column}
     \begin{column}[c]{0.45\textwidth}
       \begin{center}
-      Coefficient de variation\\de l'abondance parmi \\les habitats
-           \begin{equation}
-           SSI_i = \frac{\sqrt{\frac{\sum_{j=1}^K(d_j-\bar{d})^2}{K-1}}}{\bar{d}}
-           \end{equation}
-     \end{center}
+        Coefficient de variation\\de l'abondance parmi \\les habitats
+        \begin{equation}
+          SSI_i = \frac{\sqrt{\frac{\sum_{j=1}^K(d_j-\bar{d})^2}{K-1}}}{\bar{d}}
+        \end{equation}
+      \end{center}
       \begin{itemize}
-       \item<2-> Une espèce agricole:\\$SSI_{\textit{Skylark}} = 1.07$
-       \item<3>  Une espèce généraliste: \\$SSI_{\textit{Blackbird}} = 0.25$
+      \item<2-> Une espèce agricole:\\$SSI_{\textit{Skylark}} = 1.07$
+      \item<3>  Une espèce généraliste: \\$SSI_{\textit{Blackbird}} = 0.25$
       \end{itemize}
 
     \end{column}
   \end{columns}
 \end{frame}
 
- 
- 
- 
 
 
- \begin{frame}{National trends , $\tau$ et SSI }
-   
-   \begin{center}
-               \includegraphics[width=.7\textwidth]{trend_buffeur_allSP_specialisation}\\
-                \textcolor{gray}{Gray} : Generalist species |  \textcolor{orange}{Orange} : Farmland specialist species
-   
-       \end{center}
-             
- 
-   
- \end{frame} 
 
 
- 
-  \begin{frame}{$\tau$ et SSI}
+
+\begin{frame}{National trends , $\tau$ et SSI }
   
+  \begin{center}
+    \includegraphics[width=.7\textwidth]{trend_buffeur_allSP_specialisation}\\
+    \textcolor{gray}{Gray} : Generalist species |  \textcolor{orange}{Orange} : Farmland specialist species
     
-   \begin{center}
-                \includegraphics[width=.7\textwidth]{b_SSI_allSP_2}\\
-                 \textcolor{gray}{Gray} : Generalist species |  \textcolor{orange}{Orange} : Farmland specialist species
-   
+  \end{center}
+  
+  
+  
+\end{frame} 
+
+
+
+\begin{frame}{$\tau$ et SSI}
+  
+  
+  \begin{center}
+    \includegraphics[width=.7\textwidth]{b_SSI_allSP_2}\\
+    \textcolor{gray}{Gray} : Generalist species |  \textcolor{orange}{Orange} : Farmland specialist species
     
-   \end{center}
+    
+  \end{center}
 
 
- \end{frame} 
- 
+\end{frame} 
 
 
- 
- 
+
+
+
 
 \begin{frame}{Conclusion}
   \begin{itemize}[<+->]
-   \item importance de la migration inter patch dans la dynamique local (30 sp / 37)
-   \item les populations souffre globalement moins si elle ont un $\tau$ fort
-   \item sauf si elle sont très spécialistes
-   \item $\rightarrow$ effet aggravant la réponse des spécialistes
-   \item $\tau$ semble avoir un sens fonctionnel au vu de sa corrélation avec le HRS
+  \item importance de la migration inter patch dans la dynamique local (30 sp / 37)
+  \item les populations souffre globalement moins si elle ont un $\tau$ fort
+  \item sauf si elle sont très spécialistes
+  \item $\rightarrow$ effet aggravant la réponse des spécialistes
+  \item $\tau$ semble avoir un sens fonctionnel au vu de sa corrélation avec le HRS
   \end{itemize}
- \end{frame}
+\end{frame}
 
 
- 
- 
- 
-%=======================================================
+
+
+
+% =======================================================
 \section{Conclusions, perspectives}
-%=======================================================
+% =======================================================
 
 \begin{frame}{Conclusion et perspectives}
-\begin{itemize}
-\item Nombreux compromis quant à la portée et la pertinence des résultats\\
-\end{itemize}
-\begin{center}
- \includegraphics[width=.9\textwidth]{conclu1.png}
-\end{center}
-\end{frame}
-
-\begin{frame}{Conclusion et perspectives}
-\begin{itemize}
-\item Nombreux compromis quant à la portée et la pertinence des résultats\\
-\item Données
-\end{itemize}
-\begin{center}
- \includegraphics[width=.9\textwidth]{conclu2.png}
-\end{center}
-
-\end{frame}
-
-\begin{frame}{Conclusion et perspectives}
-\begin{itemize}
-\item Nombreux compromis quant à la portée et la pertinence des résultats\\
-\item Données
-\item Intégration de la variabilité inter-individuelle et environnementale
-\item intégration des interactions inter-spécifiques
-\end{itemize}
-\end{frame}
-
-
- \begin{frame}[plain]
+  \begin{itemize}
+  \item Nombreux compromis quant à la portée et la pertinence des résultats\\
+  \end{itemize}
   \begin{center}
-  \begin{huge}
-   Merci ....
-   
-  \end{huge}
+    \includegraphics[width=.9\textwidth]{conclu1.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Conclusion et perspectives}
+  \begin{itemize}
+  \item Nombreux compromis quant à la portée et la pertinence des résultats\\
+  \item Données
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{conclu2.png}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{Conclusion et perspectives}
+  \begin{itemize}
+  \item Nombreux compromis quant à la portée et la pertinence des résultats\\
+  \item Données
+  \item Intégration de la variabilité inter-individuelle et environnementale
+  \item intégration des interactions inter-spécifiques
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[plain]
+  \begin{center}
+    \begin{huge}
+      Merci ....
+      
+    \end{huge}
 
   \end{center}
 
   \includegraphics[width=\textwidth]{angry_birds_merci}
- \end{frame}
- 
- 
- 
+\end{frame}
 
- \end{document}
+
+
+
+\end{document}
