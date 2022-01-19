@@ -283,3 +283,8 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+*.pdf
+cours_DIE_ONIRIS_Introduction_ecologie.pdf
+*.ppt
+*.pptx
+*.zip
