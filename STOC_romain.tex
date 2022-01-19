@@ -1,0 +1,258 @@
+\documentclass[]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage{hyperref}
+%\usepackage{animate}
+\usepackage{graphicx}
+\usepackage{color}
+
+%% Theme
+\mode<presentation>
+%\usetheme[]{Berlin}
+\useoutertheme[footline=authorinstitutetitle]{miniframes}
+\useoutertheme{smoothtree}
+\useinnertheme[shadow=true]{rounded}
+\usecolortheme{orchid}
+\usecolortheme{whale}
+
+
+\graphicspath{{./images/}} 
+
+
+% \usecolortheme{progressbar}
+% \usefonttheme{progressbar}
+% \useinnertheme{progressbar}
+% \useoutertheme{progressbar}
+%% Logo
+%\logo{\includegraphics[height=0.5cm]{Logo.png}}
+%% Fond de la page
+% \setbeamercolor{background canvas}{bg=couleur}
+
+\title[STOC: DB et tendances]{STOC EPS : la base de données et le
+  calcul des tendances}
+
+\author{Romain Lorrillière | \textit{romain.lorrilliere@mnhn.fr}}
+%\institute{Paris SUD : M1 EBE Module DYNA (Dec 2019)}
+\date{14 Avril 2021}
+
+\AtBeginSection[]{
+  \begin{frame}
+    \frametitle{\insertsectionhead}
+    \scriptsize \tableofcontents[currentsection,hideothersubsections]
+  \end{frame}
+}
+
+\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+\begin{document}
+\maketitle
+
+
+
+%\section{Sommaire}
+%% =====================
+%\begin{frame}
+%  \frametitle{Sommaire}
+%  \tableofcontents[hideallsubsections]
+%\end{frame}
+
+
+\begin{frame}{Plan}
+  \tableofcontents[pausesections]
+\end{frame}
+
+
+
+
+%=======================================================
+\section{La base de données}
+% ===============================================
+
+
+\begin{frame} {Quelques dates clefs}
+  \begin{itemize}[<+->]
+  \item \textbf{1989}
+    \begin{itemize}
+    \item début du STOC,
+    \item les observateurs choisissent leur carré
+    \item mais pas de base de données avant la réforme du
+      protocole en 2001.
+    \item nous sommes à la recherche des données brut de 1989-2000
+    \end{itemize}
+  \item \textbf{2001}
+    \begin{itemize}
+    \item première base de données 
+    \item FNat (sous access) très fouillis
+    \end{itemize}
+     \end{itemize}
+\end{frame}
+
+
+\begin{frame} {Quelques dates clefs}
+  \begin{itemize}[<+->]
+  \item \textbf{2015}
+    \begin{itemize}
+    \item révolution : interface en ligne pour la saisie sur un
+      miroir des sites faune-france VigiePlume
+    \item pb les deux bases de données sont disjointes
+    \item réalisation d'un script qui permet de créer la base de
+      données unifiée
+    \item la base de données est donc créer à partir d'un script qui
+      importe les données des deux sources (FNat et VigiePlume)
+    \item base de données PostgreSQL et postgis
+    \item script disponible pour installation local
+    \item et script d'export standardisé (données brut, agrégation au
+      points ou au carrés)
+    \end{itemize}
+   \end{itemize}
+\end{frame}
+
+\begin{frame} {Quelques dates clefs}
+  \begin{itemize}[<+->]
+  \item \textbf{2020}
+    \begin{itemize}
+    \item c'est re la loose il y a des soucis avec la DB en ligne donc
+      pas de mise à jours des tendance cette année
+    \end{itemize}
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}{La base de données Postgres}
+  \begin{itemize}[<+->]
+  \item DB postgis pour jointures spatiales efficaces
+  \item Des primary key inéligibles 
+    ex : $pk\_inventaire =  pk\_point+date$ \\
+    $pk\_point = pk\_carre + num\_point$
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}{La base de données Postgres}
+  \begin{itemize}[<+->]
+   \item Des tables de données brutes
+  \begin{itemize}
+  \item $carre$: \textbf{LE carré STOC}
+     \newline longitude, latitude, géométrie, altitude, département, commune, $id\_carre$
+   \item $point$: \textbf{un carré}
+     \newline longitude, latitude, géométrie, altitude, département, commune
+   \item $inventaire$: \textbf{un point, un date}
+     \newline info passage, conditions envir, ``observateur''
+   \item $observation$ : \textbf{un inventaire, une espèce, une classe
+       de distance}
+     \newline une abondance
+   \item $habitat$: \textbf{un inventaire}
+     \newline description de l'habitat par l’observateur selon catégories hiérarchiques
+   \end{itemize}
+    \end{itemize}
+  \end{frame}
+   
+
+
+\begin{frame}{La base de données Postgres}
+  \begin{itemize}[<+->]
+   \item Des tables de données construites
+     \begin{itemize}
+     \item $point\_annee$: \textbf{un point, une année}
+       \newline qualité inventaire, habitat
+     \item $carre\_annee$: \textbf{un carré, une année}
+       \newline qualité inventaire, habitat
+     \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+
+\begin{frame}{La base de données Postgres}
+  \begin{itemize}[<+->]
+   \item Des tables de données génériques
+     \begin{itemize}
+     \item $species$
+       \newline codes, noms, classification
+      \item $species\_indicateur\_fonctionnel$
+        \newline SSI, STI STrI...
+      \item $species\_list\_indicateur$
+        \newline agricole, forestier, urbain, généraliste, farmland
+        bird, montagne...
+      \item codes habitats
+         \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+
+  \begin{frame}{Une V2 de la base de données Postgres}
+    \begin{itemize}[<+->]
+    \item couche atlas et birdlife
+      \newline stage de Thomas et Elodie
+    \item table de traits fonctionnels
+    \item veille biblio sur les indicateurs qui sortent
+      \newline ex: urbanophilie (Guetté et al. 2017)
+    \item table observateurs
+    \item amélioration des tables $xxx\_annee$
+      \begin{itemize}
+      \item description plus fine de habitat
+      \item contrôle qualité
+        \newline heure de réalisation des points, réalisation de tous les points ...
+        les points
+      \end{itemize}
+    \item table historique des carrés
+      \newline pour faire un suivi plus simple
+    \end{itemize}
+  \end{frame}
+
+
+
+%=======================================================
+\section{Tendance et variation d'abondance}
+% ===============================================
+
+
+
+\begin{frame}{Mode de calcul}
+  \begin{equation}
+    \label{eq:2}
+    log(N)\sim annee + carré
+  \end{equation}
+  \begin{itemize}
+  \item année en numérique $\rightarrow$ tendance
+  \item année en facteur $\rightarrow$ variation d'abondance
+  \end{itemize}
+  \begin{itemize}
+  \item glm
+  \item glmmTMB
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Mode de calcul}
+  \begin{itemize}
+  \item carré
+  \item -800 m
+  \item que deuxième passage pour migrateur tardif
+  \item transiant seulement pour certain gros piaf (rapace)
+  \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Mode de calcul}
+   \includegraphics[width=\textwidth]{STRTUR_trend_2019_trim}
+\end{frame}
+
+\begin{frame}{Mode de calcul}
+   \includegraphics[width=0.8\textwidth]{trend_2019_trimvariation_group}
+\end{frame}
+
+
+\begin{frame}{rTRIM}
+  \begin{itemize}
+  \item outil historique et reconnu à l'échelle européenne TRIM
+  \item package rTRIM $\rightarrow$ très très rapide
+  \end{itemize}
+\end{frame}
+
+
+
+\end{document}
