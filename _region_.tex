@@ -1,0 +1,96 @@
+\message{ !name(STOC_romain.tex)}\documentclass[]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage{hyperref}
+%\usepackage{animate}
+\usepackage{graphicx}
+\usepackage{color}
+
+%% Theme
+\mode<presentation>
+%\usetheme[]{Berlin}
+\useoutertheme[footline=authorinstitutetitle]{miniframes}
+\useoutertheme{smoothtree}
+\useinnertheme[shadow=true]{rounded}
+\usecolortheme{orchid}
+\usecolortheme{whale}
+
+
+\graphicspath{{./images/}} 
+
+
+% \usecolortheme{progressbar}
+% \usefonttheme{progressbar}
+% \useinnertheme{progressbar}
+% \useoutertheme{progressbar}
+%% Logo
+%\logo{\includegraphics[height=0.5cm]{Logo.png}}
+%% Fond de la page
+% \setbeamercolor{background canvas}{bg=couleur}
+
+\title[STOC: DB et tendances]{STOC EPS : la base de données et le
+  calcul des tendances}
+
+\author{Romain Lorrillière | \textit{romain.lorrilliere@mnhn.fr}}
+%\institute{Paris SUD : M1 EBE Module DYNA (Dec 2019)}
+\date{14 Avril 2021}
+
+\AtBeginSection[]{
+  \begin{frame}
+    \frametitle{\insertsectionhead}
+    \scriptsize \tableofcontents[currentsection,hideothersubsections]
+  \end{frame}
+}
+
+\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+\begin{document}
+
+\message{ !name(STOC_romain.tex) !offset(-3) }
+
+\maketitle
+
+
+
+%\section{Sommaire}
+%% =====================
+%\begin{frame}
+%  \frametitle{Sommaire}
+%  \tableofcontents[hideallsubsections]
+%\end{frame}
+
+
+\begin{frame}{Plan}
+  \tableofcontents[pausesections]
+\end{frame}
+
+
+
+
+%=======================================================
+\section{La base de données}
+% ===============================================
+
+% ------------------------------------------------
+\subsection{Quelques dates clefs}
+% --------------------------------------
+
+\begin{frame} {Quelques dates clefs}
+  \begin{itemize}
+  \item 1989
+    \begin{itemize}
+    \item début du STOC, mais pas de base de données avant la réforme du
+      protocole en 2001.
+    \item nous sommes à la recherche des données brut de 1989-2000
+      
+    \end{itemize}
+    
+  \end{itemize}
+\end{frame}
+
+
+ \end{document}
+
+\message{ !name(STOC_romain.tex) !offset(-96) }
