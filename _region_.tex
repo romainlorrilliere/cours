@@ -1,16 +1,24 @@
-\message{ !name(STOC_romain.tex)}\documentclass[]{beamer}
+\message{ !name(cours_DIE_ONIRIS_Suivi_populations_oiseaux.tex)}\documentclass[10pt]{beamer}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage{natbib}
-\usepackage{hyperref}
-%\usepackage{animate}
-\usepackage{graphicx}
-\usepackage{color}
+%\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+% \usepackage{natbib}
+%\usepackage{hyperref}
+% \usepackage{animate}
+%\usepackage{graphicx}
+%\usepackage{color}
+
+\pdfminorversion=5 
+\pdfcompresslevel=9
+\pdfobjcompresslevel=3
 
 %% Theme
-\mode<presentation>
+% \useinnertheme[shadow=true]{rounded}
+% \useoutertheme{shadow}
+% \usecolortheme{orchid}
+% \usecolortheme{whale}%\usetheme{progressbar}
 %\usetheme[]{Berlin}
+
 \useoutertheme[footline=authorinstitutetitle]{miniframes}
 \useoutertheme{smoothtree}
 \useinnertheme[shadow=true]{rounded}
@@ -20,77 +28,1363 @@
 
 \graphicspath{{./images/}} 
 
-
 % \usecolortheme{progressbar}
 % \usefonttheme{progressbar}
 % \useinnertheme{progressbar}
 % \useoutertheme{progressbar}
 %% Logo
-%\logo{\includegraphics[height=0.5cm]{Logo.png}}
+% \logo{\includegraphics[height=0.5cm]{./images/Logo.png}}
 %% Fond de la page
 % \setbeamercolor{background canvas}{bg=couleur}
 
-\title[STOC: DB et tendances]{STOC EPS : la base de données et le
-  calcul des tendances}
+\title[Suivi de populations d'oiseaux]{Suivi des populations d’animaux
+  sauvages et dynamique de populations \\
+  \textit{\footnotesize{Outils et méthodes adaptés aux enjeux, l'exemple des oiseaux des populations aux communautés}}}
 
-\author{Romain Lorrillière | \textit{romain.lorrilliere@mnhn.fr}}
-%\institute{Paris SUD : M1 EBE Module DYNA (Dec 2019)}
-\date{14 Avril 2021}
+\author{Romain Lorrilliere | \textit{romain.lorrilliere@mnhn.fr}}
+\institute{ENVT : DIE Santé de la faune sauvage non captive (mars 2023)}
+\date{14 mars 2022}
 
 \AtBeginSection[]{
   \begin{frame}
-    \frametitle{\insertsectionhead}
+   \frametitle{\insertsectionhead}
     \scriptsize \tableofcontents[currentsection,hideothersubsections]
   \end{frame}
 }
 
-\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+
+%\AtBeginSubsection[]{
+%  \begin{frame}
+%    \frametitle{\insertsubsectionhead}
+%    \scriptsize \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide ]
+%  \end{frame}
+%}
+%\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
 
 \begin{document}
 
-\message{ !name(STOC_romain.tex) !offset(-3) }
+\message{ !name(cours_DIE_ONIRIS_Suivi_populations_oiseaux.tex) !offset(-3) }
 
 \maketitle
 
 
 
-%\section{Sommaire}
+% \section{Sommaire}
 %% =====================
-%\begin{frame}
-%  \frametitle{Sommaire}
-%  \tableofcontents[hideallsubsections]
-%\end{frame}
+\begin{frame}
+   \frametitle{Sommaire}
+   \tableofcontents[hideallsubsections]
+ \end{frame}
 
 
-\begin{frame}{Plan}
-  \tableofcontents[pausesections]
+
+
+% ===============================================
+\section{Les oiseaux}
+% ===============================================
+
+\begin{frame}{Les oiseaux}
+\begin{center}
+	\includegraphics<1>[width=0.8\textwidth]{divOiseaux2_1}
+\end{center}
+ \end{frame}
+
+
+
+% ----------------------------------------------------------
+\subsection{Un groupe ancien} 
+% ----------------------------------------------------------
+
+\begin{frame}{Les dinosaures rescapés} 
+        \begin{center}
+        \includegraphics[width=\textwidth]{the-great-tree-of-life}     
+      \end{center}
 \end{frame}
 
 
 
 
-%=======================================================
-\section{La base de données}
-% ===============================================
+\begin{frame}{Les dinosaures rescapés} 
+  \begin{columns}
+    \begin{column}[c]{0.55\textwidth}
+    \begin{small}
+      \begin{itemize}[<+->]
+      \item Descendant de petits dinosaures \textit{Theropodes}\\
+        \begin{center}
+          \includegraphics<1->[width=.5\textwidth]{Jurassic-Park}   
+        \end{center}
+      \item Extinction suite à la crise Crétacé-Terciaire (volcanisme,
+        météorite), \footnotesize{65,5 Ma env.}
+      \item Importante radiation évolutive
+      \end{itemize}
+       \end{small}
+    \end{column}
+    \begin{column}[c]{0.45\textwidth}
+      \begin{center}
+        \includegraphics<1-2>[width=\textwidth]{bird_evo}     
+        \includegraphics<3>[width=\textwidth]{tree_of_piaf}     
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
 
-% ------------------------------------------------
-\subsection{Quelques dates clefs}
-% --------------------------------------
 
-\begin{frame} {Quelques dates clefs}
-  \begin{itemize}
-  \item 1989
-    \begin{itemize}
-    \item début du STOC, mais pas de base de données avant la réforme du
-      protocole en 2001.
-    \item nous sommes à la recherche des données brut de 1989-2000
+\begin{frame}{Diversification : 10000 sp}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{divOiseaux2_2} 
+  \end{center}
+\end{frame}
+
+\begin{frame}{Diversification}
+  \begin{columns}[c]
+    \begin{column}[c]{0.35\textwidth}
+      \begin{itemize}[<+->]
+      \item Régime alimentaire
+      \item Démographie
+      \item Stratégie reproductive
+      \item Cycle biologique nycthémère
+      \item Habitat
+      \item Region
+      \item Mode déplacement
+      \item Migration
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.7\textwidth}
+      \includegraphics[width=\textwidth]{divOiseaux2_2} \\
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+% ----------------------------------------------------------
+\subsection{La migration} 
+% ----------------------------------------------------------
+
+\begin{frame}{La migration}
+  \begin{center}
+    La migration permet aux oiseaux d’échapper aux conditions rigoureuses de l'hiver sur leur site de reproduction\\
+    \vspace{20pt}
+    \includegraphics[width=.9\textwidth]{volMigration} \\
+    \vspace{20pt}
+    Phénomène très répandu chez les oiseaux : elle concerne 20\% des
+    espèces et 40\% des espèces qui nichent en Europe et en Asie
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{La migration : Migrateurs de courte ou ...}
+   \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+       \includegraphics<1->[width=.55\textwidth]{migrationCourt} 
+      \end{center}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
       
+        \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+\begin{frame}{La migration :  Migrateurs de courte ou ???}
+    \begin{columns}[c]
+    \begin{column}[c]{0.3\textwidth}
+      \begin{itemize}[<+->]
+      \item Les migrations déjà observées par Aristote (384-322
+        avant notre ère)
+      \item La migration courte distance
+      \item Mais que la migration courte distance
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.7\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{aristote_migration_1}
+        \includegraphics<2>[width=\textwidth]{aristote_migration_2}
+        \includegraphics<3>[width=\textwidth]{aristote_migration_3}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+\begin{frame}{La migration :  Migrateurs de courte ou hibernation ???}
+   \begin{columns}[c]
+    \begin{column}[c]{0.3\textwidth}
+      \begin{itemize}
+      \item Les migrations déjà observées par Aristote (384-322
+        avant notre ère)
+      \item La migration courte distance
+      \item Mais que la migration courte distance
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.7\textwidth}
+      \begin{center}
+         \includegraphics[width=\textwidth]{aristote_migration_3}
+      \end{center}
+    \end{column}
+  \end{columns}
+  \begin{center}
+    Theorie de l'hibernation qui persiste jusquà la fin du 19ème
+    siècle, mais remise en question dès le 16ème siecle et notamment par Buffon. 
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{La migration : Migrateurs de courte ou longue distance}
+ \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+       \includegraphics[width=.55\textwidth]{migrationCourt} 
+      \end{center}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \includegraphics[width=.55\textwidth]{migrationLong} 
+        \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{La migration : Observation}
+  \begin{columns}[c]
+    \begin{column}[c]{0.6\textwidth}
+      \begin{itemize}[<+->]
+      \item Dès 1880 au US, observation des vols migratoires sur des points de passage
+        important  \\
+        En France ex : col d'Organbidexka (Pyrénées-Atlantiques)
+      \item $\rightarrow$ comptage et date de passage
+      \item  En 1899 et 1900 Hans Christian Cornelius Mortensen bague
+        avec des bagues en aluminum des Etourneaux sansonnet pour
+        connaitre leur destination hivernale
+      \item Naissance du baguage des oiseaux
+      \item $\rightarrow$ déterminiation grossière des routes migratoires
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.4\textwidth}
+      \begin{center}
+        \includegraphics<1-2>[width=\textwidth]{organbidexka}
+        \includegraphics<3>[width=\textwidth]{Mortensen}
+        \includegraphics<4>[width=\textwidth]{controle_acrsch}
+        \includegraphics<5>[width=\textwidth]{crbpodata_acrsch}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+\begin{frame}{La migration : Technologie embarquée}
+  \begin{columns}[c]
+    \begin{column}[c]{0.6\textwidth}
+      \begin{itemize}[<+->]
+      \item En 1978 création du system Argos \\
+        \footnotesize{col. NASA, NOAA, CNES} \\
+        \footnotesize{mais technologie lourde,\\ et $ < 3\% $  (max 5\%) masse oiseaux}
+      \item En 1984 début de technologie embarquée aux US sur
+        Pyguargue à tête blanche ($> 5 Kg$)\\
+        Balise de $170g$
+      \item ex: Aigle pomarin\\
+        Mise en évidence des routes migratoires
+      \item ex: Barge rousse\\
+        Voyage incroyable de + de 10000 km en 5-7 jours sans stop
+      \end{itemize} 
+    \end{column}
+    \begin{column}[c]{0.4\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{argos}
+        \includegraphics<2>[width=\textwidth]{gps155g_pygargue_queue_blanche}
+        \includegraphics<3>[width=.9\textwidth]{gps-aigle_pomarin}
+        \includegraphics<4>[width=\textwidth]{barge_rousse_migration}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{La migration : Technologie embarquée}
+  \begin{columns}[c]
+    \begin{column}[c]{0.4\textwidth}
+      \begin{itemize}[<+->]
+      \item ex: Cigogne blanche
+      \end{itemize} 
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{center}
+        \includegraphics[width=\textwidth]{movebank_cigogne_44}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{La migration: de nombreuses routes différentes}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{bird_migration} 
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Les mouvements : Technologie embarquée}
+  ex: Albatros à sourcils noirs de Kerguélen
+  \begin{columns}[c]
+    \begin{column}[c]{0.4\textwidth}
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{Argos_PTT_albatross}
+      \end{center}
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{center}
+        \includegraphics[width=\textwidth]{albatross_journey_argos_kergelen}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+\begin{frame}{Dispersion}
+  \begin{columns}[c]
+    \begin{column}[c]{0.75\textwidth}
+      ex: Les albatros hurleur de Kerguélen et Crozet
+    \end{column}
+    \begin{column}[c]{0.25\textwidth}
+      \includegraphics[width=\textwidth]{Wandering-albatross-display} 
+    \end{column}
+  \end{columns}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{wanderingAlbatrosMigration} 
+  \end{center}
+\end{frame}
+
+
+% ----------------------------------------------------------
+\subsection{Pourquoi les oiseaux ?} 
+% ----------------------------------------------------------
+
+\begin{frame}{Indicateur de biodiversité}
+  \begin{center}
+    \includegraphics[width=.8\textwidth]{indicateurs} 
+  \end{center}
+\tiny{\cite{Balmford2005,Donald2001,Donald2002,Doxa2010,Fisher2009,Gregory2005,Sekercioglu2004,Weibull2003}}
+\end{frame}
+
+
+\begin{frame}{Et surtout...}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{AEGCAU} 
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Les observateurs}
+  \begin{center}
+    \includegraphics<1>[width=.9\textwidth]{birdwatcher} 
+    \includegraphics<2>[width=.9\textwidth]{twitchers} 
+    \end{center}
+\end{frame}
+
+
+\begin{frame}{Observations naturalistes}
+   \begin{columns}[c]
+    \begin{column}[c]{0.8\textwidth}
+      Principalement des données opportunistes \\
+      $\rightarrow$ sans protocole
+    \end{column}
+    \begin{column}[c]{0.20\textwidth}
+      \includegraphics[width=\textwidth]{visionature_logo} 
+    \end{column}
+  \end{columns}
+   \begin{center}
+    \includegraphics[width=.8\textwidth]{faune_france_contribution_2021_01_09}
+  \end{center}
+  \footnotesize{source: http://https://www.faune-france.org/ (09/01/2021)}
+\end{frame}
+
+
+% =====================================================================
+\section{Démarche scientifique}
+% =====================================================================
+
+\begin{frame}{La démarche scientifique}
+  Méthode scientifique hypothético-déductive
+  \begin{center}
+      \includegraphics[width=.9\textwidth]{methode_scientifique_wikipedia}
+    \end{center}
+    Grande diversité dans les pratiques en fonction des
+    domaines.
+    \begin{tiny}
+      (Wikipedia)
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{La démarche scientifique en écologie}
+  \begin{itemize}
+  \item En écologie, il est en général impossible d’étudier une entité
+    dans sa totalité \\
+    \begin{footnotesize}
+    Temps, accessibilité, etc…      
+    \end{footnotesize}
+  \item Travail sur une sous-partie de l’objet d’étude (=échantillon)
+    \begin{itemize}
+    \item Problème : on veut en général pouvoir extrapoler les
+      observations de l’échantillon à l’ensemble de l’objet d’étude
+    \item L’échantillon doit refléter la composition, la complexité, la variabilité de l’objet d’étude
     \end{itemize}
-    
+  \item $\rightarrow$ un plan d’échantillonnage est nécessaire
   \end{itemize}
 \end{frame}
 
 
- \end{document}
+\begin{frame}{Rôle des statistiques dans les plans d’échantillonnage}
+  Différence entre probabilités et statistiques
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{block}<2->{Probabilité}
+        \begin{center}
+          \includegraphics[width=.3\textwidth]{prob_stat_prob}
+        \end{center}
+        \begin{small}
+          La théorie des probabilités permet de faire des inférences sur un échantillon, connaissant la population dont il est issu
+        \end{small}
+      \end{block}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{block}<3->{Statistique}
+        \begin{center}
+          \includegraphics[width=.3\textwidth]{prob_stat_stat}
+        \end{center}
+        \begin{small}
+          Les statistiques permettent d’inférer les caractéristiques
+          d’une population à partir de la connaissance d’un échantillon
+        \end{small}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \begin{alertblock}<4->{}
+    \begin{center}
+      $\rightarrow$ Rôle \textbf{crucial des statistiques} pour la construction et l’interprétation des plans d’échantillonnage   
+    \end{center}
+  \end{alertblock}
+\end{frame}
 
-\message{ !name(STOC_romain.tex) !offset(-96) }
+
+\begin{frame}{Définition du plan d'échantillonnage}
+  \begin{columns}[c]
+    \begin{column}[c]{0.7\textwidth}
+      \begin{small}
+        \begin{enumerate}[<+->]
+        \item Définir le (ou les) objectif(s) \\
+          \only<1> {
+            \begin{footnotesize}
+              écologie théorique, conservation, indicateurs
+            \end{footnotesize}}
+        \item Définir la population statistique à échantillonner\\
+          \only<2> {
+            elle doit être bien délimitée dans l’espace et dans le temps \\
+            \begin{footnotesize}
+              groupe taxonomique, unité d'échantillonnage, population
+            \end{footnotesize}}
+        \item Définir les variables à mesurer\\
+          \only<3> {
+            \begin{footnotesize}
+              mesure sur la population statistique (abondance, masse, taille
+              d'aile, age) et sur les variables
+              explicatives (carte, SIG...)
+            \end{footnotesize}}
+        \item Identifier les sources de variabilité et d'erreur\\
+          \only<4> {
+            \begin{footnotesize}
+              effet observateur, d'apprentissage
+            \end{footnotesize}}
+        \item Définir le mode de répétition des mesures\\
+          \only<5> {
+            \begin{footnotesize}
+              spatiale ou temporelle
+            \end{footnotesize}}
+        \item Positionner les unités d'échantillonnage 
+          \only<6> {
+            \begin{footnotesize}
+              tirage aléatoire ou échantillonnage structuré ou systématique
+            \end{footnotesize}}
+        \end{enumerate}
+      \end{small}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \includegraphics<1>[width=\textwidth]{objectif}
+      \includegraphics<2>[width=\textwidth]{pop_stat}
+      \includegraphics<3>[width=.7\textwidth]{variable}
+      \includegraphics<4>[width=\textwidth]{bruit_biais}
+      \includegraphics<5->[width=\textwidth]{repetition}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Plan d'échantillonnage et faune sauvage}
+  Ethique de la manipulation de la faune sauvage.
+  Bien être des animaux est compromis par
+  \begin{itemize}
+  \item le stress 
+  \item les risques de blessure et de mortalité
+  \end{itemize}
+
+  \begin{alertblock}<2->{Pourquoi est-ce un problème ?}
+    \begin{itemize}
+    \item Risque pour l’animal si stress maintenu plus de quelques
+      minutes 
+    \item Risque pour la science: l’activation physiologique d’une réponse au stress interfère avec les objets mêmes de la recherche
+    \end{itemize}
+    \begin{center}
+      \textbf{Happy animal make good science}
+    \end{center}
+    \begin{tiny}
+      (Poole T., 1997)
+    \end{tiny}
+    
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}{Plan d'échantillonnage: les 3Rs}
+  \begin{block}{les 3Rs}
+  \begin{itemize}[<+->]
+  \item \textbf{Remplacer}\\
+    Ne pas embêter d'animaux
+  \item \textbf{Réduire}\\
+    En embêter moins
+  \item \textbf{Raffiner}\\
+    Embêter le moins possible
+  \end{itemize}
+  \end{block}
+  \begin{tiny}
+  Principles of Humane Experimental Techniques (Russell and Burch 1959)
+  \end{tiny}
+\end{frame}
+
+
+
+\begin{frame}{Plan d'échantillonnage: Remplacer !}
+    \begin{columns}[c]
+    \begin{column}[c]{0.7\textwidth}
+     \begin{itemize}[<+->]
+  \item bibliographie
+  \item méthode sans capture
+    \begin{itemize}[<+->]
+    \item piege photo
+    \item enregistrement sonore
+    \item observation
+    \end{itemize}
+  \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \includegraphics<1>[width=\textwidth]{presse}
+      \includegraphics<3>[width=.8\textwidth]{piege_photo}
+      \includegraphics<4>[width=.8\textwidth]{piege_son}
+      \includegraphics<5>[width=\textwidth]{jumelles}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Plan d'échantillonnage: Réduir !}
+    \begin{columns}[c]
+    \begin{column}[c]{0.7\textwidth}
+     \begin{itemize}[<+->]
+  \item Test de puissance
+    \begin{itemize}[<+->]
+    \item simulation de dynamique à partir de connaissance du système
+    \item ampleur du changement attendu
+    \item variabilité de ce qui est observé
+    \end{itemize}
+    \item $\rightarrow$ estimer taille d'échantillonnage \textbf{minimal et suiffisant}
+  \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+     \includegraphics<1-4>[width=.6\textwidth]{beverton_holt}
+      \includegraphics<1-4>[width=.\textwidth]{dyn_logistic_models_with_stocha}
+      \includegraphics<5>[width=\textwidth]{Besnard_test_puissance}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Plan d'échantillonnage: Rafiner !}
+    \begin{columns}[c]
+    \begin{column}[c]{0.7\textwidth}
+     \begin{itemize}
+  \item <1-2> méthode de capture et contention
+  \item <3-5> manipulation
+  \item <6-> appareil embarqué
+  \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+       \includegraphics<1>[width=.8\textwidth]{BTO_mistnet_with_bird}
+       \includegraphics<2>[width=.8\textwidth]{kolring_mew_gull_trap}
+       \includegraphics<3>[width=.8\textwidth]{courlis_alaska_bec}
+       \includegraphics<4>[width=\textwidth]{lori_nonette}
+       \includegraphics<5>[width=\textwidth]{courlis_alaska_pose_balise}
+       \includegraphics<6>[width=.9\textwidth]{courlis_alaska_pb_balise}
+       \includegraphics<6>[width=\textwidth]{Bridge_2011_weight_beacon}
+     \end{column}
+  \end{columns}
+\end{frame}
+
+
+% ----------------------------------------------------------
+\section{Sciences participatives} 
+% ----------------------------------------------------------
+\begin{frame}{Sciences participatives}
+  \begin{columns}[c]
+    \begin{column}[c]{0.6\textwidth}
+      \textbf{Vigie-Nature} un programme du \\\textbf{Muséum National d'Histoire
+      Naturelle}\\
+      \begin{tiny}
+        http://www.vigienature.fr/ 
+      \end{tiny}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \includegraphics[width=\textwidth]{vigie_nature}
+    \end{column}
+    \begin{column}[c]{0.1\textwidth}
+      \includegraphics[width=\textwidth]{mnhn}
+    \end{column}
+  \end{columns}
+  \begin{center}
+      \includegraphics<1>[width=.7\textwidth]{vigie-nature_protocole}
+  \end{center}
+  \begin{itemize}[<+->]
+  \item  Suivis à large échelle et à long terme des espèces communes
+    permettent de répondre à des questions essentielles sur la
+    biodiversité ordinaire :\\
+    \begin{itemize}[<+->]
+    \item Quel sont les transformations quantitatives de notre faune
+      commune ?
+    \item Comment les espèces communes répondent aux pressions d'origine
+      anthropique ? 
+    \item Quel sont les effets du changement climatique ? 
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Protocole STOC (Breeding Bird Survey)}
+  \begin{center}
+    STOC: \textcolor{red}{S}uivi \textcolor{red}{T}emporel des \textcolor{red}{O}iseaux \textcolor{red}{C}ommuns
+  \end{center}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        2300 carrés suivis au moins une fois depuis 2001 \\
+        \includegraphics[width=.8\textwidth]{carreSTOC_map_simple_}
+      \end{center}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{small}
+        \begin{itemize}
+        \item  Sites choisis aléatoirement
+        \item 10 pts d'écoute de 5mn par site
+        \item 2 passages pas an
+        \item Description standardisée de l'hab.
+        \end{itemize}
+      \end{small}
+      \begin{center}
+        \includegraphics[width=.7\textwidth]{STOC_points}
+      \end{center}
+    \end{column}
+  \end{columns}
+  \begin{center}
+    175 espèces suivies
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Protocole STOC (Breeding Bird Survey)}
+  \begin{center}
+    \includegraphics[width=.5\textwidth]{carreSTOC_}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{STOC: Bruant jaune \textit{Emberiza citrinella}}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \includegraphics[width=.5\textwidth]{bruantjaune}
+      \begin{itemize}
+      \item  Tendance :
+        \begin{itemize}
+        \item $-50\%$ depuis 2001, diminution
+        \end{itemize}
+           \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=.9\textwidth]{embcit2017}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{STOC: Pigeon ramier \textit{Columba palumbus}}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \includegraphics[width=.5\textwidth]{pigeonRamier}
+      \begin{itemize}[<+->]
+      \item  Tendance :
+        \begin{itemize}
+        \item $+78\%$ en 18 ans, augmentation
+        \end{itemize}
+      \item Distribution géographique 
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics<1-3>[width=.9\textwidth]{colpal_}
+        \includegraphics<4->[width=\textwidth]{distributionPigeonRamier} 
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{STOC: Indicateur groupe de specialisation}
+  \begin{center}
+     \includegraphics<1>[width=\textwidth]{STOC_indicateurgroupe}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{STOC: Effet du changement climatique}
+  \begin{center}
+      \includegraphics<1>[width=.8\textwidth]{CTI}
+  \includegraphics<2>[width=.9\textwidth]{CTIevolution}
+  \end{center}
+\end{frame}
+
+
+
+% ----------------------------------------------------------
+\section{Le suivi individuel} 
+% ----------------------------------------------------------
+
+
+
+\begin{frame}{Le suivi individuel}
+  Pourquoi un suivi individuel ?
+ \begin{columns}[c]
+    \begin{column}[c]{0.7\textwidth}
+     \begin{itemize}[<+->]
+  \item Accès aux paramètres démographiques
+    \begin{itemize}[<+->]
+    \item Taux de survie
+    \item Taux d'émigration
+    \item Taux d'immigration
+    \item Taux de recrutement
+    \item Age et sexe ratio
+    \end{itemize}
+  \end{itemize}
+  
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \begin{center}
+        \includegraphics[width=.9\textwidth]{cycle_demographique}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Le suivis individuel : le baguage}
+  \begin{columns}[c]
+    \begin{column}[c]{0.6\textwidth}
+      \textbf{CRBPO} une une structure du \\\textbf{Muséum National d'Histoire
+      Naturelle}\\
+      \begin{tiny}
+        https://crbpo.mnhn.fr/
+      \end{tiny}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \includegraphics[width=\textwidth]{crbpo_logo}
+    \end{column}
+    \begin{column}[c]{0.1\textwidth}
+      \includegraphics[width=\textwidth]{mnhn}
+    \end{column}
+  \end{columns}
+  \begin{columns}[c]
+    \begin{column}[c]{0.6\textwidth}
+     \begin{itemize}[<+->]
+  \item Baguage pour la migration dès 1900
+  \item Principe: pause d'une bague très légère (un 500ème de la masse
+    de l'oiseau) avec un numéro unique
+  \item en France à partir de 1911
+  \item Aujourd'hui, aussi utilisé pour l'estimation des paramètres démographiques
+  \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.4\textwidth}
+      \begin{center}
+        \includegraphics[width=.9\textwidth]{bagues}
+      \end{center}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Le baguage exemple simple}
+  Programme national de baguage de suivi de la migration automnale
+  avec pour but de documenter les variations de phénologie migratoire
+  des passereaux entre individus, dans l’espace et dans le temps
+  \begin{columns}[c]
+    \begin{column}[c]{0.4\textwidth}
+      \begin{small}
+        \begin{itemize}[<+->]
+        \item Les stations du programme PHENO
+        \item Date de passage des Phragmites des joncs plus tardive si reproduction plus nordique
+        \item Les jeunes Phragmites aquatiques sont plus tardifs
+        \end{itemize}
+      \end{small}
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{carte_stations_pheno_2013_2014}
+        \includegraphics<2>[width=.3\textwidth]{acrsch}
+        \includegraphics<2>[width=.8\textwidth]{pheno_date_passage}
+        \includegraphics<3>[width=.3\textwidth]{acrola}
+        \includegraphics<3>[width=.8\textwidth]{pheno_sex_acrola}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Capture-Marquage-Recapture (CMR)}
+  \begin{block}{Définition}
+    Les modèles CMR, sont des modèles d'inférence mathématique
+    permettant d'estimer la taille d'une population en estimant
+    également la probabilité de capture des individus. 
+  \end{block}
+\end{frame}
+
+\begin{frame}{Capture-Marquage-Recapture (CMR)}
+  \begin{block}{Principe}
+    \textbf{Capture} et \textbf{marquage} d'une partie des individus
+    d'une population. La part des \textbf{recaptures} lors d'une seconde
+    session permettra d'estimer la taille de la population. 
+  \end{block}
+  \begin{center}
+     \includegraphics[width=.7\textwidth]{Cmr_exemple}
+  \end{center}
+  \begin{tiny}
+    Par EDYP Vandutiours — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=44095834
+  \end{tiny}
+\end{frame}
+
+
+
+\begin{frame}{Capture-Marquage-Recapture (CMR)}
+  \begin{block}{Hypothèses}
+    \begin{itemize}[<+->]
+    \item \textbf{Population close}\\
+      \begin{footnotesize}
+        pas d'entrée (immigration, naissance) ou de sortie
+        (émigration, mort) d'individus entre les deux sessions 
+      \end{footnotesize}
+    \item \textbf{Probabilité de capture équivalente pour tous les individus}\\
+      \begin{footnotesize}
+        entre les individus et entre les sessions
+      \end{footnotesize}
+    \item \textbf{Marquage dois être durable}\\
+      \begin{footnotesize}
+        les individus marqués ne doivent pas perdre leur marque
+      \end{footnotesize}
+    \item \textbf{Les individus marqués se mélangent à la population}\\
+      \begin{footnotesize}
+        et ont la même probabilité de capture que les individus non marqués
+      \end{footnotesize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Capture-Marquage-Recapture (CMR)}
+  \begin{block}{Importance des recaptures}
+    Pour augmenter les probabilités de \emph{recatpure} il exsite de nombreuses
+    méthodes de marquage qui permettent un contrôle à distance des
+    individus    
+  \end{block}
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{marquage}
+  \end{center}
+  \only<2>{Modèles autorisant une différence de probabilité de capture entre
+    la première capture et les recaptures}
+\end{frame}
+
+
+
+\begin{frame}{Construction d'un modèle CMR}
+  \begin{center}
+    \includegraphics<1>[width=\textwidth]{cmr1}   
+    \includegraphics<2>[width=\textwidth]{cmr2}
+    \includegraphics<3>[width=\textwidth]{cmr3}
+    \includegraphics<4>[width=\textwidth]{cmr4}
+  \end{center}  
+\end{frame}
+
+\begin{frame}{Analyse matriciel d'un CMR}
+  \begin{center}
+    \includegraphics<1>[width=.5\textwidth]{math}   
+  \end{center}  
+\end{frame}
+
+\begin{frame}{Analyse matriciel d'un CMR}
+  \begin{center}
+    \includegraphics<1>[width=.8\textwidth]{matrice1}   
+    \includegraphics<2>[width=.8\textwidth]{matrice2}
+    \includegraphics<3>[width=.8\textwidth]{matrice3}
+    \includegraphics<4>[width=.8\textwidth]{matrice4}
+    \includegraphics<5>[width=.8\textwidth]{matrice10}
+    \includegraphics<6>[width=.8\textwidth]{matrice6}
+    \includegraphics<7>[width=.8\textwidth]{matrice7}
+    \includegraphics<8>[width=.8\textwidth]{matrice11}
+  \end{center}  
+\end{frame}
+
+
+
+\section{Exemple d'étude de conservation}
+
+\begin{frame}{Le Bruant ortolan}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Un petit passereau de la famille des bruants, gros comme un
+        moineau 
+      \item Principalement granivore, et insectivore lors de l'élevage
+        des jeunes
+      \item Se reproduit en Europe et en Russie
+      \item Hiverne en Afrique sub-saharienne
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=.5\textwidth]{ortolan_male}
+        \includegraphics[width=.7\textwidth]{ortolan_carte}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Le Bruant ortolan : les menaces}
+    \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Entre 3 et 7 millions de couples en Europe
+        \begin{itemize}
+        \item Principalement en Russie et Turquie (90 \%) \\
+          Tendance -10\% depuis 2000
+        \item France 6000 couples dans le centre et le sud-est
+        \item Norvège, Suède, ouest de la Finland : env. 10000
+          couples \\
+          Tendance -30\% depuis 2000 
+       \end{itemize}
+     \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+          \includegraphics[width=.7\textwidth]{ortolan_carte}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Le Bruant ortolan : les menaces}
+    \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Perte d'habitat
+      \item Dinimution de l'abondance des proies
+      \item Pratique traditionnelle dans les Landes
+        \begin{itemize}
+        \item Braconnage: capture à la matole (jusqu’en 2018)\\
+          1500 braconniers \\
+          $\times$ 30 matoles \\
+          $\times$ 5 appelants \\
+          $=$ peut être 30000 captures par an en automne
+        \item Engraissement au grain
+        \item Tué à l’Armagnac
+        \item Plat culturel : Ortolan cuit à l’Armagnac
+       \end{itemize}
+     \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+       \includegraphics<3->[width=.7\textwidth]{ortolan_braconnage}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Le Bruant ortolan : problématique}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Espèce protégée mais besoin de mieux comprende les routes
+        de migration 
+      \item D'où viennent les oiseaux qui passent dans le sud-ouest de
+        la France
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=.5\textwidth]{ortolan_male}
+        \includegraphics[width=.7\textwidth]{ortolan_carte_2}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Le Bruant ortolan : problématique}
+  \begin{center}
+    \includegraphics[width=.5\textwidth]{migration_route_europe}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Le Bruant ortolan :le plan d'échantillonnage}
+   \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Echantillonnage de nombreuses populations en Europe
+      \item Le long d'un gradient Est-Ouest
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+     \begin{center}
+    \includegraphics[width=\textwidth]{ortolan_echantillonnage}
+  \end{center}
+    \end{column}
+  \end{columns}
+ \end{frame}
+
+
+\begin{frame}{Le Bruant ortolan : méthode de suivis de la migration}
+ \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Le Bruant ortolan pèse env. 20g
+      \item GPS ARGOS beaucoup trop lourd
+      \item Géo-localisateur (GLS) 0,5g \\
+        (2,5\% de la masse de l'oiseau)
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics<3>[width=.5\textwidth]{gls}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}  
+
+
+\begin{frame}{Les GLS : technologie}
+\begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Ne calculent pas de localisation
+      \item Ne transmettent pas de données
+      \item Mesurent l'intensité lumineuse toutes les minutes
+      \item Doivent être récupérés pour obtenir les données    
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics<1-2>[width=.5\textwidth]{gls}
+        \includegraphics<3->[width=.5\textwidth]{gls_lumiere}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Les GLS : estimation des localisations}
+  \begin{columns}[c]
+    \begin{column}[c]{0.4\textwidth}
+      \begin{itemize}[<+->]
+      \item à partir de l'heure du levé du jour
+      \item et de la longeur du jour
+      \item fortes incertitudes proche de l'équateur et de l'équinoxe
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{center}
+        \includegraphics[width=\textwidth]{gls_localisation}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Terrain : Europe et Russie occidentale}
+  \begin{center}
+    \includegraphics[width=\textwidth]{ortolan_terrain_1}
+  \end{center} 
+\end{frame}
+
+\begin{frame}{Terrain : Recherche des ortolans}
+  \begin{center}
+    \includegraphics[width=\textwidth]{ortolan_terrain_2}
+  \end{center}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+     \begin{center}
+        Femelle
+      \end{center} 
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        Mâle
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Terrain : La capture}
+  \begin{center}
+    \includegraphics<1>[width=\textwidth]{ortolan_terrain_3}
+    \includegraphics<2>[width=\textwidth]{ortolan_terrain_4}
+  \end{center}
+  Diffusion de chant car les mâles sont très territoriaux
+\end{frame}
+
+
+\begin{frame}{Terrain : Pose du GLS}
+  \begin{columns}[c]
+    \begin{column}[c]{0.7\textwidth}
+      \begin{itemize}
+      \item Méthode du \emph{leg-loop}
+        \begin{itemize}
+        \item fixation sur le bas du dos par un lien qui fait une boucle
+          derrière chaque pattes
+        \end{itemize}
+      \item Ajout d'une combinaison de bague couleur pour reconnaitre
+        l'oiseau à distance 
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \begin{center}
+       \includegraphics[width=0.8\textwidth]{leg-loop_Thaxter_et_al_2014}
+      \end{center} 
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Terrain : Pose du GLS}
+  \begin{center}
+    \includegraphics<1>[width=\textwidth]{ortolan_terrain_5}
+    \includegraphics<2>[width=0.4\textwidth]{ortolan_terrain_6}
+    \includegraphics<3>[width=0.8\textwidth]{ortolan_terrain_7}
+  \end{center} 
+\end{frame}
+
+
+\begin{frame}{Terrain : l'année suivante}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{ortolan_terrain_8}
+  \end{center} 
+\end{frame}
+
+\begin{frame}{Terrain : Recapture (Force et honneur ;-) )}
+  \begin{center}
+    \includegraphics<1>[width=\textwidth]{ortolan_terrain_9}
+    \includegraphics<2>[width=\textwidth]{ortolan_terrain_10}
+    \includegraphics<3>[width=0.5\textwidth]{ortolan_terrain_11}
+  \end{center} 
+\end{frame}
+
+\begin{frame}{Terrain : La Recapture}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{ortolan_terrain_12}
+  \end{center}
+  \begin{alertblock}{VICTOIRE !!!}
+    Dans ce GLS il y a les données permettant de retracer la route de cet ortolan pendant 1 année !!!! 
+  \end{alertblock}
+\end{frame}
+
+
+
+\begin{frame}{Les tracées}
+ \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item 41 GLS retrouvés qui ont fonctionnés
+      \item 2 routes
+        \begin{itemize}
+        \item Une à l’ouest
+        \item Une à l’est
+        \end{itemize}
+      \item Seuls les oiseaux provenant de Scandinavie occidentale et
+        d’Allemagne passent par le Sud-Ouest de la France 
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=0.8\textwidth]{ortolan_gls_track_1}
+        \includegraphics<2-4>[width=0.8\textwidth]{ortolan_gls_track_2}
+        \includegraphics<5>[width=0.8\textwidth]{ortolan_gls_track_3}
+      \end{center} 
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+\begin{frame}{La mue}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Les plumes sont fragiles et doivent être régulièrement
+        remplacées
+      \item Phénomène et sa phénologie très étudiés
+      \item Chez les passereaux : mue annuelle
+       \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{mue_0_moineau}
+        \includegraphics<2->[width=\textwidth]{mue_1}
+      \end{center} 
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+
+\begin{frame}{La mue : chez le Bruant ortolan}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Bien connue
+      \item Complète après la reproduction
+      \item Partielle (petite plume du corps) en hiver avant le migration de retour
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{center}
+           \includegraphics<1-3>[width=\textwidth]{mue_2}
+        \includegraphics<4>[width=0.9\textwidth]{mue_3_ortolan}
+      \end{center} 
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+
+\begin{frame}{Isotope stable : le deutérium}
+  Le deutérium, symbolisé 2H ou D, est un isotope naturel stable de
+  l'hydrogène, et son abondance sur terre varie dans l'espace
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{deuterium}
+  \end{center}
+  \begin{block}<2>{}
+    \begin{center}
+      La composition des plumes dépend du lieu où elles poussent
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Où poussent les plumes l'hiver}
+  \begin{center}
+    \includegraphics<1>[width=0.8\textwidth]{ortolan_koweit_1}
+    \includegraphics<2>[width=0.8\textwidth]{ortolan_koweit_2}
+    \includegraphics<3>[width=0.8\textwidth]{ortolan_koweit_3}
+    \includegra phics<4>[width=0.6\textwidth]{ortolan_koweit_4}
+  \end{center}
+    \only<4>{Prélèvement d'une plume scapulaire, muée en Afrique}
+\end{frame}
+
+
+\begin{frame}{Resultat du dosage}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+       \begin{block}<1->{à l'ouest}
+         238 individus
+         \includegraphics<2>[width=.9\textwidth]{ortolan_deuterium_ouest_1}
+         \includegraphics<3->[width=.9\textwidth]{ortolan_deuterium_ouest_2}
+       \end{block}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+       \begin{block}<3->{à l'est}
+         297 individus
+         \includegraphics<4>[width=.9\textwidth]{ortolan_deuterium_est_1}
+         \includegraphics<5>[width=.9\textwidth]{ortolan_deuterium_est_2}
+       \end{block}
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+\begin{frame}{La migration du Bruant ortolan}
+   \begin{center}
+      \includegraphics[width=\textwidth]{ortolan_resultats_migration}
+  \end{center}
+ \begin{block}<2->{}
+    Les ortolans qui passent par la France proviennent de la
+    population la plus petite et en fort déclin de Scandinavie
+  \end{block}
+  \begin{alertblock}<3>{}
+    \begin{center}
+      Le braconnage français fait payer un lourd tribu à cette
+      population et sa probabilité d’extinction diminuera beaucoup
+      si on y met fin.
+    \end{center}
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}{Effet du braconnage}
+  \begin{columns}[c]
+    \begin{column}[c]{0.5\textwidth}
+      \begin{itemize}
+      \item Modèle de dynamique de population calibré sur les données
+        démographiques Norvégiennes
+      \item Fort effet du braconnage (rectangle rouge)
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+       \begin{center}
+      \includegraphics[width=.7\textwidth]{ortolan_result_sensibility}
+  \end{center}
+    \end{column}
+  \end{columns}
+    \begin{center}
+      \includegraphics<2>[width=.7\textwidth]{ortolan_publi}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}[plain]
+  \begin{center}
+    \includegraphics[width=\textwidth]{ortolan_envol}\\
+    \vspace{0.5cm}
+    \begin{Large}
+      Merci pour votre attention...      
+    \end{Large}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+  \begin{tiny}
+    \frametitle{Réferences}
+    \bibliographystyle{apalike}
+    \bibliography{bib_files/biblio}
+  \end{tiny}
+\end{frame}
+
+\end{document}
+
+\message{ !name(cours_DIE_ONIRIS_Suivi_populations_oiseaux.tex) !offset(-1390) }
